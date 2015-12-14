@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 11:50:23 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/14 21:53:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/14 22:27:57 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,9 @@ static int	read_file(const char *file, t_list **lst)
 		return (1);
 	while ((ret = read(fd, buffer, BUFF_SIZE)))
 	{
-		if (ret < 0)
+		if ((ret < 0) && ((err = 1)))
 			break ;
-		buffer[ret] = '\0';
-		if (ret == 0)
+		if ((buffer[ret] = '\0') && (ret == 0))
 			break ;
 		else if (check_line((char *)buffer, ret) == 1)
 			ft_lstadd(lst, ft_lstnew(buffer, ret));
@@ -103,7 +102,7 @@ int			main(int ac, char **av)
 			//ft_lstforeach_suffix(lst, &ft_memdel);
 		}
 		else
-			ft_putendl("fichier invalide");
+			ft_putendl("error");
 	}
 	else
 		ft_putendl("nombre de parametres invalides");
