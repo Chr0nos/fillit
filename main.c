@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 11:50:23 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/14 21:39:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/14 21:53:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static int	read_file(const char *file, t_list **lst)
 
 	*lst = NULL;
 	err = 0;
-	fd = open(file, O_RDONLY);
+	if (!(fd = open(file, O_RDONLY)))
+		return (1);
 	while ((ret = read(fd, buffer, BUFF_SIZE)))
 	{
 		if (ret < 0)
