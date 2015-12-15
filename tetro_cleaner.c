@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 20:28:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 21:00:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,8 @@ static void	tetroclean_columns(char *s)
 	}
 }
 
-static void	tetroclean(char *s)
+void		tetro_cleaner(char *s)
 {
 	tetroclean_lines(s);
 	tetroclean_columns(s);
-}
-
-void		tetro_cleaner(t_list *lst)
-{
-	while (lst)
-	{
-		tetroclean((char *)(lst->content));
-		lst = lst->next;
-	}
 }
