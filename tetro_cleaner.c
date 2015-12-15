@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 21:55:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 22:17:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static void	tetroclean_columns(char *s)
 		}
 		p--;
 	}
-	ft_putendl("tetromino");
 }
 
 void		tetro_cleaner(char *s)
