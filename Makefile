@@ -6,14 +6,15 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/11 12:12:09 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/14 21:02:15 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/15 09:54:52 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fillit
 GCC=clang -Wall -Werror -Wextra
 LIBFT=../libft/
-OBJ=main.o
+OBJ=main.o \
+	read_file.o
 
 all: $(NAME)
 $(NAME): $(OBJ)
