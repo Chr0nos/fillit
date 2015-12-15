@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 21:00:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 21:53:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,28 @@ static void	tetroclean_lines(char *s)
 
 static void	tetroclean_columns(char *s)
 {
-	char	pure[TETRA_BLOCS * 2 + 1];
 	size_t	p;
-	int		npos;
 	size_t	line;
 	size_t	lines_count;
+	size_t	width;
 
+	width = TETRA_BASE;
 	p = 0;
-	npos = 1;
 	lines_count = ft_strcount(s, '\n');
-	while ((s[p] != '\0') && (npos >= 0))
+	while (p < width)
 	{
-		line = lines_count;
-		npos = ft_strchrpos(&s[p + (line * (TETRA_BASE - 1))], '\n');
-		while ((line > 0) && (npos >= 0) &&
-				(s[p + (size_t)npos] == '.'))
-			line--;
-		(void)pure;
+		line = 0;
+		while ((line < lines_count) && (s[p + (line * width)] == '.'))
+				line++;
+		if (line == lines_count)
+		{
+			ft_putstr("kill column ! ");
+			ft_putnbr((int)p);
+			ft_putchar('\n');
+		}
 		p++;
 	}
+	ft_putendl("tetromino");
 }
 
 void		tetro_cleaner(char *s)
