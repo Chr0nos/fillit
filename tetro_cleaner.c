@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 21:53:25 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 21:54:52 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	tetroclean_columns(char *s)
 	{
 		line = 0;
 		while ((line < lines_count) && (s[p + (line * width)] == '.'))
-				line++;
+			line++;
 		if (line == lines_count)
 		{
 			ft_putstr("kill column ! ");
