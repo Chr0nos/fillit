@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 17:10:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 19:12:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,24 @@ static void	tetroclean_lines(char *s)
 static void	tetroclean_columns(char *s)
 {
 	char	pure[TETRA_BLOCS * 2 + 1];
+	size_t	p;
+	int		npos;
+	size_t	line;
+	size_t	lines_count;
 
-	(void)pure;
-	(void)s;
+	p = 0;
+	npos = 1;
+	lines_count = ft_strcount(s, '\n');
+	while ((s[p] != '\0') && (npos >= 0))
+	{
+		line = lines_count;
+		npos = ft_strchrpos(&s[p + (line * (TETRA_BASE - 1))], '\n');
+		while ((line > 0) && (npos >= 0) &&
+				(s[p + (size_t)npos] == '.'))
+			line--;
+		(void)pure;
+		p++;
+	}
 }
 
 static void	tetroclean(char *s)
