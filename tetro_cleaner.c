@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 19:12:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 20:28:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	tetroclean_lines(char *s)
 	char	pure[BUFF_SIZE];
 	char	*origin;
 
-	origin	= s;
+	origin = s;
 	ft_memset((void*)pure, '\0', BUFF_SIZE);
 	while (*s)
 	{
