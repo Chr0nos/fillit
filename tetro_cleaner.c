@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 21:54:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 21:55:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static void	tetroclean_columns(char *s)
 	size_t	width;
 
 	width = TETRA_BASE;
-	p = 0;
+	p = width - 1;
 	lines_count = ft_strcount(s, '\n');
-	while (p < width)
+	while (p)
 	{
 		line = 0;
 		while ((line < lines_count) && (s[p + (line * width)] == '.'))
@@ -58,7 +58,7 @@ static void	tetroclean_columns(char *s)
 			ft_putnbr((int)p);
 			ft_putchar('\n');
 		}
-		p++;
+		p--;
 	}
 	ft_putendl("tetromino");
 }
