@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:53:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 13:44:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 14:14:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@ static int		check_tetrominal(char *s)
 static int		check_eols(char *s)
 {
 	size_t	line;
-	size_t	pos;
 
 	line = 1;
 	while (line <= TETRA_HEIGH)
 	{
-		pos = line * TETRA_BASE - 1;
-		if ((s[pos] != '\n') || (s[pos] == '\0'))
+		if (s[line * TETRA_BASE - 1] != '\n')
 			return (0);
 		line++;
 	}
