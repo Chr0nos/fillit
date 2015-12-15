@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:53:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 13:17:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 13:44:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include "fillit.h"
 #include <fcntl.h>
 #include <unistd.h>
-#define TETRA_BASE 5
-#define TETRA_HEIGH 4
-#define BUFF_SIZE TETRA_BASE * TETRA_HEIGH + 1
 
 static size_t	count_adj_pos(char *s, size_t p)
 {
@@ -100,12 +97,11 @@ int				read_file(const char *file, t_list **lst)
 			break ;
 		else if (check_line((char *)buffer, ret) == 1)
 			ft_lstadd(lst, ft_lstnew(buffer, (size_t)ret));
-		else
-		{
-			err = 1;
+		else if ((err = 1))
 			break ;
-		}
 	}
 	close(fd);
+	if ((lst) && (ft_lstsize(*lst) > TETRO_MAX) && ((err = 1)))
+		ft_lstdel(lst, &ft_lstpulverisator);
 	return (err);
 }
