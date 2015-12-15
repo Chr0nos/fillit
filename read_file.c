@@ -6,11 +6,12 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:53:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 10:39:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/15 13:17:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "fillit.h"
 #include <fcntl.h>
 #include <unistd.h>
 #define TETRA_BASE 5
@@ -45,12 +46,26 @@ static int		check_tetrominal(char *s)
 	while (s[p] != '\0')
 	{
 		if (s[p] == '#')
-		{
 			adjacents += count_adj_pos(s, p);
-		}
 		p++;
 	}
 	return (((adjacents == 6) || (adjacents == 8)) ? 1 : 0);
+}
+
+static int		check_eols(char *s)
+{
+	size_t	line;
+	size_t	pos;
+
+	line = 1;
+	while (line <= TETRA_HEIGH)
+	{
+		pos = line * TETRA_BASE - 1;
+		if ((s[pos] != '\n') || (s[pos] == '\0'))
+			return (0);
+		line++;
+	}
+	return (1);
 }
 
 static int		check_line(char *buffer, int len)
@@ -59,7 +74,7 @@ static int		check_line(char *buffer, int len)
 		return (0);
 	if (len == BUFF_SIZE)
 		buffer[BUFF_SIZE - 1] = '\0';
-	if (!ft_stronlystr(buffer, ".#\n"))
+	if ((!ft_stronlystr(buffer, ".#\n")) || (!check_eols(buffer)))
 		return (0);
 	if (!check_tetrominal(buffer))
 		return (0);
@@ -77,14 +92,14 @@ int				read_file(const char *file, t_list **lst)
 	err = 0;
 	if (!(fd = open(file, O_RDONLY)))
 		return (1);
-	while ((ret = read(fd, buffer, BUFF_SIZE)))
+	while ((ret = (int)read(fd, buffer, BUFF_SIZE)))
 	{
 		if ((ret < 0) && ((err = 1)))
 			break ;
 		if ((buffer[ret] = '\0') && (ret == 0))
 			break ;
 		else if (check_line((char *)buffer, ret) == 1)
-			ft_lstadd(lst, ft_lstnew(buffer, ret));
+			ft_lstadd(lst, ft_lstnew(buffer, (size_t)ret));
 		else
 		{
 			err = 1;
