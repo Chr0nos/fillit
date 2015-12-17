@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/17 14:49:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/17 16:51:56 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ t_fillit	*preparator(t_list *lst)
 		p++;
 		lst = lst->next;
 	}
+	grid_reset(x);
 	return (x);
 }

@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/11 12:12:09 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/17 15:06:25 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/17 17:03:22 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,11 @@ LIBFT=../libft/
 OBJ=main.o \
 	read_file.o \
 	tetro_cleaner.o \
-	tetro_spliter.o \
 	preparator.o \
 	liberator.o \
-	trouvator.o
+	trouvator.o \
+	grid_reset.o \
+	displayator.o
 
 all: $(NAME)
 $(NAME): $(OBJ)
