@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 11:50:23 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/16 19:03:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/17 15:07:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int				main(int ac, char **av)
 		if ((!err) && (lst))
 		{
 			ft_lstforeachi_suffix(lst, &lst_callback);
+			trouvator(lst);
 			ft_lstdel(&lst, &ft_lstpulverisator);
 		}
 		else

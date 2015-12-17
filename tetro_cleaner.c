@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/17 13:38:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/17 14:02:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,8 @@ static void	tetroclean_columns(char *s, const size_t total_lines)
 		while ((line != 0) && ((tab[line - 1])[column] == '.'))
 			line--;
 		if (line == 0)
-		{
 			while (line < total_lines)
 				delete_column(tab[line++], column);
-		}
 	}
 	retstring = ft_strunsplit(tab, '\n');
 	free_tab(tab);
