@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:53:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 14:14:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/16 15:41:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int				read_file(const char *file, t_list **lst)
 		if ((buffer[ret] = '\0') && (ret == 0))
 			break ;
 		else if (check_line((char *)buffer, ret) == 1)
-			ft_lstadd(lst, ft_lstnew(buffer, (size_t)ret));
+			ft_lstadd(lst, ft_lstnew(buffer, (size_t)ret + 1));
 		else if ((err = 1))
 			break ;
 	}

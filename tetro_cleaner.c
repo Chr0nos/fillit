@@ -6,19 +6,22 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 14:36:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 22:17:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/17 13:38:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
+#include <stdlib.h>
 
-static int	ft_strnonly(char *s, size_t n, char c)
+static void	free_tab(char **tab)
 {
-	while ((*s) && (n--))
-		if (*(s++) != c)
-			return (0);
-	return (1);
+	char	**origin;
+
+	origin = tab;
+	while (*tab != NULL)
+		free(*tab++);
+	free(origin);
 }
 
 static void	tetroclean_lines(char *s)
@@ -37,33 +40,43 @@ static void	tetroclean_lines(char *s)
 	ft_strcpy(origin, pure);
 }
 
-static void	tetroclean_columns(char *s)
+static void	delete_column(char *s, size_t column_id)
 {
-	size_t	p;
-	size_t	line;
-	size_t	lines_count;
-	size_t	width;
+	ft_memmove(s + column_id,
+			s + column_id + 1,
+			ft_strlen(s + column_id));
+}
 
-	width = TETRA_BASE;
-	p = width - 1;
-	lines_count = ft_strcount(s, '\n');
-	while (p)
+static void	tetroclean_columns(char *s, const size_t total_lines)
+{
+	size_t			line;
+	size_t			column;
+	size_t			pureline;
+	char			**tab;
+	char			*retstring;
+
+	tab = ft_strsplit(s, '\n');
+	pureline = 0;
+	column = TETRA_BASE - 1;
+	while (column--)
 	{
-		line = 0;
-		while ((line < lines_count) && (s[p + (line * width)] == '.'))
-			line++;
-		if (line == lines_count)
+		line = total_lines;
+		while ((line != 0) && ((tab[line - 1])[column] == '.'))
+			line--;
+		if (line == 0)
 		{
-			ft_putstr("kill column ! ");
-			ft_putnbr((int)p);
-			ft_putchar('\n');
+			while (line < total_lines)
+				delete_column(tab[line++], column);
 		}
-		p--;
 	}
+	retstring = ft_strunsplit(tab, '\n');
+	free_tab(tab);
+	ft_strcpy(s, retstring);
+	free(retstring);
 }
 
 void		tetro_cleaner(char *s)
 {
 	tetroclean_lines(s);
-	tetroclean_columns(s);
+	tetroclean_columns(s, ft_strcount(s, '\n'));
 }

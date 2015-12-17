@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/15 21:00:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/16 15:30:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int		main(int ac, char **av);
 int		read_file(const char *file, t_list **lst);
 void	tetro_cleaner(char *s);
 void	lst_callback(size_t p, size_t len, void *content);
+char	**tetro_spliter(char *s);
 
 #endif
