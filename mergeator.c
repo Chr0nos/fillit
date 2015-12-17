@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid_reset.c                                       :+:      :+:    :+:   */
+/*   mergeator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/17 16:31:15 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/17 17:14:20 by snicolet         ###   ########.fr       */
+/*   Created: 2015/12/17 17:28:25 by snicolet          #+#    #+#             */
+/*   Updated: 2015/12/17 17:46:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "fillit.h"
 
-void	grid_reset(t_fillit *x)
+unsigned int	mergeator(t_fillit *x, unsigned short line,
+		unsigned short col, unsigned short tetro_id)
 {
-	unsigned short	p;
+	char			**tab;
+	char			*s;
+	unsigned short	l;
+	unsigned short	c;
 
-	p = GRID_EDGE - 1;
-	while (p--)
+	tab = x->elems[tetro_id].data;
+	l = 0;
+	while (l < x->height)
 	{
-		ft_memset(x->grid[p], '.', GRID_EDGE - 1);
-		x->grid[p][GRID_EDGE - 1] = '\0';
+		s = tab[l++];
+		while (x->grid[line][col] == '.')
+		{
+			x->grid[line][col] = *(s++);
+			col++;
+		}
+		if (c != col)
+			return (0);
 	}
+	return (1);
 }

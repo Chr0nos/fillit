@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/17 17:03:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/17 17:49:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 typedef struct		s_element
 {
 	char			**data;
-	size_t			height;
-	size_t			width;
+	unsigned short	height;
+	unsigned short	width;
 }					t_element;
 
 typedef struct		s_fillit
@@ -44,5 +44,7 @@ int					trouvator(t_list *lst);
 void				liberator(t_fillit *x);
 void				grid_reset(t_fillit *x);
 void				displayator(t_fillit *x);
+unsigned int		nergeator(t_fillit *x, unsigned short line,
+		unsigned short col, unsigned short tetro_id);
 
 #endif
