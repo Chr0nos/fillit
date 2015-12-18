@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mergeator.c                                        :+:      :+:    :+:   */
+/*   binarizator_of_doom.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/17 17:28:25 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/18 14:36:13 by snicolet         ###   ########.fr       */
+/*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
+/*   Updated: 2015/12/18 15:14:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-unsigned int	mergeator(t_fillit *x, unsigned short tetro_id)
+unsigned short	binarizator_of_doom(t_element *t)
 {
-	char			**tab;
-	char			*s;
-	unsigned short	l;
-	unsigned short	c;
+	unsigned short	b;
+	unsigned char	p;
 
-	tab = x->elems[tetro_id].data;
-	l = 0;
-	while (l < x->height)
+	b = 0;
+	p = 0;
+	while (p < t->height)
 	{
-		s = tab[l++];
-		while (x->grid[line][col] == '.')
-		{
-			x->grid[line][col] = *(s++);
-			col++;
-		}
-		if (c != col)
-			return (0);
+		
+		p++;
 	}
-	return (1);
+	return (b);
 }

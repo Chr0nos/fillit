@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/17 22:45:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/18 14:36:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int					trouvator(t_list *lst);
 void				liberator(t_fillit *x);
 void				grid_reset(t_fillit *x);
 void				displayator(t_fillit *x);
-unsigned int		nergeator(t_fillit *x, unsigned short tetro_id);
+unsigned int		mergeator(t_fillit *x, unsigned short tetro_id);
+unsigned short		binarizator_of_doom(t_element *t);
 
 #endif
