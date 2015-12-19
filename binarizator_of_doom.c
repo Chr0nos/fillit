@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/18 19:12:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/19 16:18:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ unsigned short	binarizator_of_doom(t_element *t)
 			while (--x)
 				pow *= 2;
 		}
-		if (t->data[pos / t->height][pos % t->width] != '.')
-			b += pow;
+		//if (t->data[pos % t->height][pos / t->width] != '.')
+		//	b += pow;
 		pow *= 2;
 		++x;;
 		++pos;

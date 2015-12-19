@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/18 13:34:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/19 16:08:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 #include "libft.h"
 #include <string.h>
 #include <stdlib.h>
+
+static void	prepair_elem(char *s, t_element *elem)
+{
+	elem->height = (unsigned char)ft_strcount(s, '\n');
+	elem->width = (unsigned char)ft_strsublen(s, '\n');
+	elem->data = ft_strsplit(s, '\n');
+	elem->bin = binarizator_of_doom(elem);
+}
 
 t_fillit	*preparator(t_list *lst)
 {
@@ -35,9 +43,7 @@ t_fillit	*preparator(t_list *lst)
 	while (lst)
 	{
 		s = (char*)lst->content;
-		x->elems[p].height = ft_strcount(s, '\n');
-		x->elems[p].width = ft_strsublen(s, '\n');
-		x->elems[p++].data = ft_strsplit(s, '\n');
+		prepair_elem((char*)lst->content, &x->elems[p++]);
 		lst = lst->next;
 	}
 	grid_reset(x);

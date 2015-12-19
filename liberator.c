@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:41:16 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/18 01:20:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/19 16:33:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	liberator(t_fillit *x)
 		free(x->elems[n].data);
 	}
 	free(x->elems);
+	ft_lstdel(x->lst, &ft_lstpulverisator);
 	free(x);
 }
