@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/19 16:08:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/20 15:35:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct		s_element
 	unsigned char	height;
 	unsigned char	width;
 	unsigned short	bin;
-	int				padding;
+	int				letter;
 }					t_element;
 
 typedef struct		s_fillit
@@ -49,5 +49,6 @@ void				grid_reset(t_fillit *x);
 void				displayator(t_fillit *x);
 unsigned int		mergeator(t_fillit *x, unsigned short tetro_id);
 unsigned short		binarizator_of_doom(t_element *t);
+void				removator(t_fillit *x, char letter);
 
 #endif

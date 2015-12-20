@@ -6,15 +6,50 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/17 16:58:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/20 15:53:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void		trouvator_engine(t_fillit *x)
+static int		insert(t_fillit *f, int p, int n)
 {
-	(void)x;
+	char		*g;
+	char		c;
+	int			x;
+	int			y;
+	const int	gs = (int)f->grid_size;
+
+	x = 0;
+	while ((x < f->elems[n].height) && (!(y = 0)))
+	{
+		while (y < f->elems[n].width)
+		{
+			g = &(f->grid[(p / gs) + x][(p % gs) + y]);
+			c = f->elems[n].data[x][y++];
+			if (c == '.')
+				;
+			else if (*g != '.')
+				return (0);
+			else
+				*g = c;
+		}
+		++x;
+	}
+	return (1);
+}
+
+static int		trouvator_engine(t_fillit *x, int p, int n)
+{
+	int		ret;
+
+	ret = insert(x, p, n);
+	if (!ret)
+	{
+		//removator(x, (char)x->elems[n].letter);
+		return (0);
+	}
+	return (1);
 }
 
 int				trouvator(t_list *lst)
@@ -24,7 +59,7 @@ int				trouvator(t_list *lst)
 	fillit = preparator(lst);
 	if (!fillit)
 		return (-1);
-	trouvator_engine(fillit);
+	trouvator_engine(fillit, 0, 0);
 	displayator(fillit);
 	liberator(fillit);
 	return (0);

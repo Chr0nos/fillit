@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   binarizator_of_doom.c                              :+:      :+:    :+:   */
+/*   removator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/20 13:52:41 by snicolet         ###   ########.fr       */
+/*   Created: 2015/12/20 14:11:45 by snicolet          #+#    #+#             */
+/*   Updated: 2015/12/20 14:16:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-unsigned short	binarizator_of_doom(t_element *t)
+void	removator(t_fillit *x, char letter)
 {
-	unsigned short			b;
-	unsigned int			pos;
-	const unsigned short	endpos = (unsigned short)(t->height * t->width);
+	size_t	p;
 
-	b = 0;
-	pos = 0;
-	while (pos < endpos)
-	{
-		if (t->data[pos / t->width][pos % t->width] != '.')
-			b += (unsigned short)ft_pow(2, ((int)pos + 1) / 2);
-		++pos;
-	}
-	return (b);
+	p = 0;
+	while (p < x->grid_size)
+		ft_strreplace(x->grid[p++], letter, '.');
 }

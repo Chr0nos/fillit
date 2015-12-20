@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/19 16:08:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/20 16:08:03 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void	prepair_elem(char *s, t_element *elem)
+static void	prepair_elem(char *s, t_element *elem, char letter)
 {
 	elem->height = (unsigned char)ft_strcount(s, '\n');
 	elem->width = (unsigned char)ft_strsublen(s, '\n');
 	elem->data = ft_strsplit(s, '\n');
 	elem->bin = binarizator_of_doom(elem);
+	elem->letter = letter;
 }
 
 t_fillit	*preparator(t_list *lst)
@@ -43,7 +44,9 @@ t_fillit	*preparator(t_list *lst)
 	while (lst)
 	{
 		s = (char*)lst->content;
-		prepair_elem((char*)lst->content, &x->elems[p++]);
+		prepair_elem((char*)lst->content, &x->elems[p],
+				(char)((int)x->elements_count - 1 - (int)p + 'A'));
+		++p;
 		lst = lst->next;
 	}
 	grid_reset(x);
