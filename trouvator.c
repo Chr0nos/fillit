@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/20 15:53:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/20 17:55:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		insert(t_fillit *f, int p, int n)
 	const int	gs = (int)f->grid_size;
 
 	x = 0;
-	while ((x < f->elems[n].height) && (!(y = 0)))
+	while ((x <= f->elems[n].height) && (!(y = 0)))
 	{
 		while (y < f->elems[n].width)
 		{
@@ -46,9 +46,11 @@ static int		trouvator_engine(t_fillit *x, int p, int n)
 	ret = insert(x, p, n);
 	if (!ret)
 	{
-		//removator(x, (char)x->elems[n].letter);
+		removator(x, (char)x->elems[n].letter);
 		return (0);
 	}
+	else if (n + 1 < (int)x->elements_count)
+		return (trouvator_engine(x, p + x->elems[n].width - 1, n + 1));
 	return (1);
 }
 

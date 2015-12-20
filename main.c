@@ -6,19 +6,12 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 11:50:23 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/20 13:17:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/20 16:47:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
-
-void			lst_callback(size_t p, size_t len, void *content)
-{
-	(void)len;
-	tetro_cleaner((char *)content);
-	ft_strreplace((char *)content, '#', 'A' + (char)p);
-}
 
 int				main(int ac, char **av)
 {
@@ -30,7 +23,6 @@ int				main(int ac, char **av)
 		err = read_file(av[1], &lst);
 		if ((!err) && (lst))
 		{
-			ft_lstforeachi_suffix(lst, &lst_callback);
 			trouvator(lst);
 		}
 		else
