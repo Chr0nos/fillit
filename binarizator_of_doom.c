@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 21:14:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 21:53:22 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ unsigned short	binarizator_of_doom(t_element *t)
 	unsigned int			line;
 	unsigned int			col;
 	int						pow;
-	unsigned int			x;
 
 	b = 0;
 	col = 0;
@@ -26,17 +25,17 @@ unsigned short	binarizator_of_doom(t_element *t)
 	line = 0;
 	while ((line < t->height) && (!(col = 0)))
 	{
-		x = 4;
 		while (col < t->width)
 		{
 			if ((++pow) && (t->data[line][col++] != '.'))
 				b |= 1 << pow;
-			x--;
 		}
-		while (x > 0)
-			if (++pow)
-				x--;
 		++line;
 	}
-	return (b / 2);
+	b = b >> 1;
+	while ((b & (unsigned short)15) == 0)
+		b = b >> 4;
+	while ((b & (unsigned short)4369) == 0)
+		b = b >> 1;
+	return (b);
 }

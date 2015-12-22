@@ -6,12 +6,12 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/11 12:12:09 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/22 21:16:56 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/22 21:45:28 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fillit
-GCC=clang -Wall -Werror -Wextra -Weverything -fsanitize=address -pipe -g3
+GCC=clang -Wall -Werror -Wextra -Weverything -fsanitize=address
 LIBFT=../libft/
 OBJ=main.o \
 	read_file.o \
