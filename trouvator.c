@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/21 10:53:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 16:55:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ static int		insert(t_fillit *f, int p, int n)
 	const int	gs = (int)f->grid_size;
 
 	x = 0;
+	y = 0;
 	while ((x <= f->elems[n].height) && (!(y = 0)))
 	{
+		if ((p % gs) + tetro_width(&f->elems[n], x) > gs)
+			return (-1);
 		while (y < f->elems[n].width)
 		{
 			g = &(f->grid[(p / gs) + x][(p % gs) + y]);
@@ -36,7 +39,7 @@ static int		insert(t_fillit *f, int p, int n)
 		}
 		++x;
 	}
-	return (1);
+	return (p + (x * y));
 }
 
 static void		seektowritable(t_fillit *x, int *p)
@@ -44,6 +47,7 @@ static void		seektowritable(t_fillit *x, int *p)
 	while ((*p < (int)x->elements_count) &&
 			(x->grid[*p / (int)x->grid_size][*p % (int)x->grid_size] != '.'))
 		*p += 1;
+	*p -= 1;
 }
 
 static int		trouvator_engine(t_fillit *x, int p, int n)
@@ -51,9 +55,9 @@ static int		trouvator_engine(t_fillit *x, int p, int n)
 	int		ret;
 
 	ret = insert(x, p, n);
-	if (!ret)
+	if (ret <= 0)
 	{
-		//removator(x, (char)x->elems[n].letter);
+		removator(x, (char)x->elems[n].letter);
 		return (0);
 	}
 	else if (n + 1 < (int)x->elements_count)
