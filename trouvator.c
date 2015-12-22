@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 19:35:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 21:00:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		insert(t_fillit *f, int p, int n)
 
 	x = 0;
 	y = 0;
-	while ((x <= f->elems[n].height) && (!(y = 0)))
+	while ((x < f->elems[n].height) && (!(y = 0)))
 	{
 		if ((p % gs) + tetro_width(&f->elems[n], x) > gs)
 			return (-1);

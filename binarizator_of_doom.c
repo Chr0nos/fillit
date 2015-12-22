@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 19:17:57 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 20:59:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned short	binarizator_of_doom(t_element *t)
 	col = 0;
 	pow = 0;
 	line = 0;
-	while ((line <= t->height) && (!(col = 0)))
+	while ((line < t->height) && (!(col = 0)))
 	{
 		x = 4;
 		while (col < t->width)
