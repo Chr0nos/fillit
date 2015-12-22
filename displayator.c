@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 20:48:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 21:59:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static void	display_tetrominos(t_fillit *x)
 		ft_putchar('\n');
 		display_bits(x->elems[p].bin);
 		display_tetro_of_the_infinite_agony(&x->elems[p]);
-		//ft_putendl((char*)lst->content);
 		ft_putchar('\n');
 		p++;
 		lst = lst->next;

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 21:16:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 21:57:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 static void	prepair_elem(char *s, t_element *elem, char letter)
 {
-	ft_strreplace(s, '#', letter);
 	elem->height = (unsigned char)ft_strcount(s, '\n');
 	elem->width = (unsigned char)ft_strsublen(s, '\n');
 	elem->data = ft_strsplit(s, '\n');
