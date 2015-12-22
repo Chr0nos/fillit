@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 20:28:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 20:32:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	display_tetro_of_the_infinite_agony(t_element *t)
 			buffer[p++] = '.';
 	}
 	buffer[p] = '\0';
-	ft_putendl(buffer);
+	ft_putendl(buffer + 1);
 }
 
 static void	display_bits(unsigned short nb)
