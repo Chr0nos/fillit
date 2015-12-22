@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 22:00:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 22:01:42 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		insert(t_fillit *f, int p, int n)
 			if (*g != '.')
 				return (0);
 			else if (c != '.')
-				*g = c;
+				*g = (char)f->elems[n].letter;
 		}
 		++x;
 	}
