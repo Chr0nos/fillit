@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 16:55:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 17:11:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		insert(t_fillit *f, int p, int n)
 
 static void		seektowritable(t_fillit *x, int *p)
 {
-	while ((*p < (int)x->elements_count) &&
+	while ((*p < (int)(x->grid_size * x->grid_size)) &&
 			(x->grid[*p / (int)x->grid_size][*p % (int)x->grid_size] != '.'))
 		*p += 1;
 	*p -= 1;
