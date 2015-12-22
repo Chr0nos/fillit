@@ -6,11 +6,24 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/20 16:02:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 19:16:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+static void	display_bits(unsigned short nb)
+{
+	char	buffer[17];
+	int		p;
+
+	p = 16;
+	buffer[p--] = '\0';
+	p++;
+	while (p--)
+		buffer[p] = ((nb >> (15 - p) & (unsigned short)1) ? '1' : '0');
+	ft_putendl(buffer);
+}
 
 static void	display_tetrominos(t_fillit *x)
 {
@@ -21,10 +34,12 @@ static void	display_tetrominos(t_fillit *x)
 	lst = x->lst;
 	while (lst)
 	{
-		ft_putnbr((int)x->elems[p++].bin);
+		ft_putnbr((int)x->elems[p].bin);
 		ft_putchar('\n');
+		display_bits(x->elems[p].bin);
 		ft_putendl((char*)lst->content);
 		ft_putchar('\n');
+		p++;
 		lst = lst->next;
 	}
 }

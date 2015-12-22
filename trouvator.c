@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 17:11:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 19:19:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ static int		insert(t_fillit *f, int p, int n)
 		{
 			g = &(f->grid[(p / gs) + x][(p % gs) + y]);
 			c = f->elems[n].data[x][y++];
-			if (c == '.')
-				;
-			else if (*g != '.')
+			if (*g != '.')
 				return (0);
-			else
+			else if (c != '.')
 				*g = c;
 		}
 		++x;
