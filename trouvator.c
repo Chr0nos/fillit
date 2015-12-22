@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 19:19:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 19:35:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int		trouvator_engine(t_fillit *x, int p, int n)
 	ret = insert(x, p, n);
 	if (ret <= 0)
 	{
-		removator(x, (char)x->elems[n].letter);
+		//removator(x, (char)x->elems[n].letter);
 		return (0);
 	}
 	else if (n + 1 < (int)x->elements_count)
