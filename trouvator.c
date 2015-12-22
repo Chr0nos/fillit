@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/20 17:55:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/21 10:53:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ static int		insert(t_fillit *f, int p, int n)
 	return (1);
 }
 
+static void		seektowritable(t_fillit *x, int *p)
+{
+	while ((*p < (int)x->elements_count) &&
+			(x->grid[*p / (int)x->grid_size][*p % (int)x->grid_size] != '.'))
+		*p += 1;
+}
+
 static int		trouvator_engine(t_fillit *x, int p, int n)
 {
 	int		ret;
@@ -46,11 +53,15 @@ static int		trouvator_engine(t_fillit *x, int p, int n)
 	ret = insert(x, p, n);
 	if (!ret)
 	{
-		removator(x, (char)x->elems[n].letter);
+		//removator(x, (char)x->elems[n].letter);
 		return (0);
 	}
 	else if (n + 1 < (int)x->elements_count)
-		return (trouvator_engine(x, p + x->elems[n].width - 1, n + 1));
+	{
+		p += x->elems[n].width;
+		seektowritable(x, &p);
+		return (trouvator_engine(x, p, n + 1));
+	}
 	return (1);
 }
 
