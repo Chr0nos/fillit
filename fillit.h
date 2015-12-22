@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 20:57:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/22 21:16:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct		s_fillit
 
 int					main(int ac, char **av);
 int					read_file(const char *file, t_list **lst);
-void				tetro_cleaner(char *s);
 t_fillit			*preparator(t_list *lst);
 int					trouvator(t_list *lst);
 void				liberator(t_fillit *x);

@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/11 12:12:09 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/22 20:38:25 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/22 21:16:56 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ GCC=clang -Wall -Werror -Wextra -Weverything -fsanitize=address -pipe -g3
 LIBFT=../libft/
 OBJ=main.o \
 	read_file.o \
-	tetro_cleaner.o \
 	tetro_info.o \
 	preparator.o \
 	liberator.o \
