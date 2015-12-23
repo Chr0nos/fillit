@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 13:53:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 15:59:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ unsigned short	binarizator_of_doom(char *s)
 	}
 	b = b >> 1;
 	while ((b & (unsigned short)15) == 0)
-		b = b >> 4;
+		b >>= 4;
 	while ((b & (unsigned short)4369) == 0)
-		b = b >> 1;
+		b >>= 1;
 	return (b);
 }
