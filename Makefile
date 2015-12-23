@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/11 12:12:09 by snicolet          #+#    #+#              #
-#    Updated: 2015/12/22 21:45:28 by snicolet         ###   ########.fr        #
+#    Updated: 2015/12/23 18:05:03 by snicolet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ=main.o \
 	liberator.o \
 	trouvator.o \
 	grid_reset.o \
-	displayator.o \
+	displayator.o displaybin.o \
 	binarizator_of_doom.o \
 	removator.o
 
