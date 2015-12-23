@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 14:55:03 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 18:16:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,12 @@ static void	display_bgrid_bits(t_fillit *x)
 	unsigned int	p;
 	unsigned int	end;
 
-	end = x->grid_size;
+	end = x->grid_size * x->grid_size;
 	p = 0;
 	while (p < end)
 	{
-		ft_putbits(&x->bgrid[p++], sizeof(unsigned char));
+		display_bits(x->bgrid[p++]);
+		ft_putchar(' ');
 		if (p % x->grid_size == 0)
 			ft_putchar('\n');
 	}
