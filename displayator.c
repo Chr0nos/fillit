@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 10:33:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 13:54:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	display_bits(unsigned short nb)
 	p++;
 	while (p--)
 		buffer[p] = ((nb >> (15 - p) & (unsigned short)1) ? '1' : '0');
-	ft_putendl(buffer);
+	ft_putstr(buffer);
 }
 
 static void	display_tetrominos(t_fillit *x)
@@ -59,10 +59,27 @@ static void	display_tetrominos(t_fillit *x)
 		ft_putnbr((int)x->elems[p].bin);
 		ft_putchar('\n');
 		display_bits(x->elems[p].bin);
+		ft_putchar('\n');
 		display_tetro_of_the_infinite_agony(&x->elems[p]);
 		ft_putchar('\n');
 		p++;
 	}
+}
+
+static void	display_bgrid_bits(t_fillit *x)
+{
+	unsigned int	p;
+	unsigned int	end;
+
+	end = x->grid_size * x->grid_size;
+	p = 0;
+	while (p < end)
+	{
+		display_bits(x->bgrid[p++]);
+		if (p % x->grid_size == 0)
+			ft_putchar('\n');
+	}
+	ft_putchar('\n');
 }
 
 void		displayator(t_fillit *x)
@@ -73,4 +90,5 @@ void		displayator(t_fillit *x)
 	p = 0;
 	while (p < x->grid_size)
 		ft_putnendl(x->grid[p++], x->grid_size);
+	display_bgrid_bits(x);
 }

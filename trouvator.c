@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 10:31:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 13:54:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ static int		insert(t_fillit *f, int p, int n)
 	return (p + (x * y));
 }
 
+static int		insert_bin(t_fillit *f, int n)
+{
+	unsigned int	line;
+	unsigned short	b;
+
+	b = f->elems[n].bin;
+	line = 0;
+	while (line < f->grid_size)
+	{
+		line++;
+	}
+	return (0);
+}
+
 static void		seektowritable(t_fillit *x, int *p)
 {
 	while ((*p < (int)(x->grid_size * x->grid_size)) &&
@@ -52,6 +66,7 @@ static int		trouvator_engine(t_fillit *x, int p, int n)
 {
 	int		ret;
 
+	(void)insert_bin;
 	ret = insert(x, p, n);
 	if (ret <= 0)
 	{

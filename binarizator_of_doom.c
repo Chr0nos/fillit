@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 11:59:52 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 13:53:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ unsigned short	binarizator_of_doom(char *s)
 		if ((s[p] != '\n') && (++pow) && (s[p] != '.'))
 			b |= 1 << pow;
 		p++;
-	}	
+	}
 	b = b >> 1;
 	while ((b & (unsigned short)15) == 0)
 		b = b >> 4;

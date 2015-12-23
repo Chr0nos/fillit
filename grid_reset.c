@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:31:15 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 12:32:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 13:54:53 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static void	bgrid_reset(t_fillit *x)
 {
 	unsigned int	p;
 
-	p = GRID_EDGE;
-	while  (p--)
+	p = x->grid_size * x->grid_size;
+	while (p--)
 		x->bgrid[p] = 0;
 }
 
-void	grid_reset(t_fillit *x)
+void		grid_reset(t_fillit *x)
 {
 	unsigned int	p;
 
