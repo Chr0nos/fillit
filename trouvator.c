@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 18:17:13 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 18:23:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static int			insert_bin(t_fillit *f, unsigned int n)
 	while (p < end)
 	{
 		b = bo;
-		while (((f->bgrid[p] & b) != 0) && ((b & 1) == 0))
-			b >>= 1;
+		while (((f->bgrid[p] & b) != 0) && ((b & 32768) == 0))
+			b <<= 1;
 		if ((f->bgrid[p] & b) == 0)
 		{
 			f->bgrid[p] |= b;
@@ -47,6 +47,7 @@ static int			insert_bin(t_fillit *f, unsigned int n)
 		}
 		p++;
 	}
+	ft_putendl("failed to place a block");
 	return (0);
 }
 
@@ -55,7 +56,6 @@ static int			trouvator_engine(t_fillit *x, unsigned int n)
 	int		ret;
 
 	ret = insert_bin(x, n);
-	/*
 	if (ret == 1)
 	{
 		if (n + 1 < x->elements_count)
@@ -65,8 +65,6 @@ static int			trouvator_engine(t_fillit *x, unsigned int n)
 	}
 	else
 		return (0);
-	*/
-	return (0);
 }
 
 int					trouvator(t_list *lst)
