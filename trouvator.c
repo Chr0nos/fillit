@@ -6,82 +6,58 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 13:54:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 15:35:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int		insert(t_fillit *f, int p, int n)
+static unsigned char	revbits(unsigned char b)
 {
-	char		*g;
-	char		c;
-	int			x;
-	int			y;
-	const int	gs = (int)f->grid_size;
+	unsigned char	x;
+	int				p;
 
 	x = 0;
-	y = 0;
-	while ((x < f->elems[n].height) && (!(y = 0)))
+	p = 0;
+	while (p < 8)
 	{
-		if ((p % gs) + tetro_width(&f->elems[n], x) > gs)
-			return (-1);
-		while (y < f->elems[n].width)
-		{
-			g = &(f->grid[(p / gs) + x][(p % gs) + y]);
-			c = f->elems[n].data[x][y++];
-			if (*g != '.')
-				return (0);
-			else if (c != '.')
-				*g = (char)f->elems[n].letter;
-		}
-		++x;
+		x |= ((b >> p) & 1) << (7 - p);
+		++p;
 	}
-	return (p + (x * y));
+	return (x);
 }
 
-static int		insert_bin(t_fillit *f, int n)
+static int			insert_bin(t_fillit *f, int n)
 {
-	unsigned int	line;
-	unsigned short	b;
+	unsigned char		b;
+	unsigned int		p;
+	const unsigned int	end = f->grid_size * f->grid_size;
 
-	b = f->elems[n].bin;
-	line = 0;
-	while (line < f->grid_size)
+	b = revbits((unsigned char)f->elems[n].bin);
+	p = 0;
+	while (p < end)
 	{
-		line++;
+		if ((f->bgrid[p] & b) == 0)
+		{
+			f->bgrid[p] = b;
+			return (1);
+		}
+		p++;
 	}
 	return (0);
 }
 
-static void		seektowritable(t_fillit *x, int *p)
-{
-	while ((*p < (int)(x->grid_size * x->grid_size)) &&
-			(x->grid[*p / (int)x->grid_size][*p % (int)x->grid_size] != '.'))
-		*p += 1;
-	*p -= 1;
-}
-
-static int		trouvator_engine(t_fillit *x, int p, int n)
+static int			trouvator_engine(t_fillit *x, int p, int n)
 {
 	int		ret;
 
-	(void)insert_bin;
-	ret = insert(x, p, n);
-	if (ret <= 0)
-	{
-		return (0);
-	}
-	else if (n + 1 < (int)x->elements_count)
-	{
-		p += x->elems[n].width;
-		seektowritable(x, &p);
-		return (trouvator_engine(x, p, n + 1));
-	}
+	ret = insert_bin(x, n);
+	(void)p;
+	(void)ret;
 	return (1);
 }
 
-int				trouvator(t_list *lst)
+int					trouvator(t_list *lst)
 {
 	t_fillit	*fillit;
 
