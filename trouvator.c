@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 18:23:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 18:30:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static unsigned short	revbits(unsigned short b)
 	return (x);
 }
 
-static int			insert_bin(t_fillit *f, unsigned int n)
+static int				insert_bin(t_fillit *f, unsigned int n)
 {
 	unsigned short			b;
 	const unsigned short	bo = revbits((unsigned char)f->elems[n].bin);
@@ -51,7 +51,7 @@ static int			insert_bin(t_fillit *f, unsigned int n)
 	return (0);
 }
 
-static int			trouvator_engine(t_fillit *x, unsigned int n)
+static int				trouvator_engine(t_fillit *x, unsigned int n)
 {
 	int		ret;
 
@@ -67,7 +67,7 @@ static int			trouvator_engine(t_fillit *x, unsigned int n)
 		return (0);
 }
 
-int					trouvator(t_list *lst)
+int						trouvator(t_list *lst)
 {
 	t_fillit	*fillit;
 
