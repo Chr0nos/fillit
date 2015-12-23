@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   binarizator_of_doom.c                              :+:      :+:    :+:   */
+/*   displaybin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 17:33:05 by snicolet         ###   ########.fr       */
+/*   Created: 2015/12/23 16:38:17 by snicolet          #+#    #+#             */
+/*   Updated: 2015/12/23 17:14:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-unsigned short	binarizator_of_doom(char *s)
+void	displaybin(t_fillit *f)
 {
-	unsigned short			b;
-	unsigned int			p;
-	int						pow;
+	unsigned int		p;
+	unsigned int		bp;
+	unsigned int		bit;
+	const unsigned int	end = f->grid_size * f->grid_size;
+	char				buffer[GRID_EDGE * GRID_EDGE];
 
-	b = 0;
-	pow = 0;
 	p = 0;
-	while (p < 21)
+	bp = 0;
+	while (p < end)
 	{
-		if ((s[p] != '\n') && (++pow) && (s[p] != '.'))
-			b |= 1 << pow;
-		p++;
+		bit = 8;
+		while (bit--)
+			buffer[bp++] = (((f->bgrid[p] & (1 << bit)) == 0) ? '.' : '#');
+		++p;
+		if (p % f->grid_size == 0)
+			buffer[bp++] = '\n';
 	}
-	b = b >> 1;
-	while ((b & (unsigned short)15) == 0)
-		b >>= 4;
-	while ((b & (unsigned short)4369) == 0)
-		b >>= 1;
-	return (b);
+	buffer[bp] = '\0';
+	ft_putendl(buffer);
 }
