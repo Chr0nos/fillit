@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/22 22:01:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/23 10:31:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int				trouvator(t_list *lst)
 	t_fillit	*fillit;
 
 	fillit = preparator(lst);
+	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
 	trouvator_engine(fillit, 0, 0);
