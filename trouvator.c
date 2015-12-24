@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/24 14:04:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/24 15:45:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int				canfit(t_fillit *f, unsigned int p, unsigned short b,
 
 	x = 4;
 	while (x--)
-		if ((f->bgrid[p + (x * gs)] & ((b & (tab[x] << (4 * (4  - x)))))) != 0)
+		if ((f->bgrid[p + (x * gs)] & ((b & (tab[x] << (4 * (3  - x)))))) != 0)
 			return (0);
 	return (1);
 }
@@ -46,20 +46,20 @@ static int				insert_bin(t_fillit *f, unsigned int n)
 	const unsigned short	bo = revbits((unsigned char)f->elems[n].bin);
 	unsigned int			p;
 	const unsigned int		end = f->grid_size * f->grid_size;
-	const unsigned short	bintab[4] = { 61440, 3840, 240, 15 };
+	const unsigned short	bintab[4] = { 15, 240, 3840, 61440 };
 
 	p = 0;
 	while (p < end)
 	{
 		b = bo;
-		while ((!canfit(f, p, b, bintab)) && ((b & 32720) == 0))
-			b <<= 1;
+		//while ((!canfit(f, p, b, bintab)) && ((b & 1) == 0))
+		//	b >>= 1;
 		if (canfit(f, p, b, bintab))
 		{
-			f->bgrid[p] |= b & bintab[0];
-			f->bgrid[p + f->grid_size] |= (b & bintab[1]) << 4;
-			f->bgrid[p + (f->grid_size * 2)] |= (b & bintab[2]) << 8;
-			f->bgrid[p + (f->grid_size * 3)] |= (b & bintab[3]) << 12;
+			f->bgrid[p] |= b & bintab[3];
+			f->bgrid[p + f->grid_size] |= (b & bintab[2]) << 4;
+			f->bgrid[p + (f->grid_size * 2)] |= (b & bintab[1]) << 8;
+			f->bgrid[p + (f->grid_size * 3)] |= (b & bintab[0]) << 12;
 			return (1);
 		}
 		p++;
@@ -73,7 +73,6 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 	int		ret;
 
 	ret = insert_bin(x, n);
-	/*
 	if (ret == 1)
 	{
 		if (n + 1 < x->elements_count)
@@ -81,9 +80,7 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 		else
 			return (1);
 	}
-	else
-		return (0);
-	*/
+	ft_putendl("failed to place element");
 	return (0);
 }
 
