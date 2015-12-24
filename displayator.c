@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 18:16:32 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/24 16:03:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ void		displayator(t_fillit *x)
 	while (p < x->grid_size)
 		ft_putnendl(x->grid[p++], x->grid_size);
 	display_bgrid_bits(x);
+	displaybin(x);
 }
