@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/24 13:31:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/24 13:42:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,14 @@ static unsigned short	revbits(unsigned short b)
 	return (x);
 }
 
-static int				canfit(t_fillit *f, unsigned int p, unsigned short b)
+static int				canfit(t_fillit *f, unsigned int p, unsigned short b,
+		const unsigned short tab[4])
 {
-	unsigned short	tab[4];
 	unsigned char	x;
 
 	x = 4;
-	tab[0] = 32720;
-	tab[1] = 1920;
-	tab[2] = 240;
-	tab[3] = 15;
 	while (x--)
-		if ((f->bgrid[p] & (b & (x))) != 0)
+		if ((f->bgrid[p] & (b & (tab[x]))) != 0)
 			return (0);
 	return (1);
 }
@@ -49,18 +45,19 @@ static int				insert_bin(t_fillit *f, unsigned int n)
 	const unsigned short	bo = revbits((unsigned char)f->elems[n].bin);
 	unsigned int			p;
 	const unsigned int		end = f->grid_size * f->grid_size;
+	const unsigned short	bintab[4] = { 61440, 3840, 240, 15 };
 
 	p = 0;
 	while (p < end)
 	{
 		b = bo;
-		while ((!canfit(f, p, b)) && ((b & 32720) == 0))
+		while ((!canfit(f, p, b, bintab)) && ((b & 32720) == 0))
 			b <<= 1;
-		if (canfit(f, p, b))
+		if (canfit(f, p, b, bintab))
 		{
-			f->bgrid[p] |= b & 30720;
-			f->bgrid[p + f->grid_size] |= b & 1920;
-			f->bgrid[p + (f->grid_size * 2)] |= b & 1920;
+			f->bgrid[p] |= b & 61440;
+			f->bgrid[p + f->grid_size] |= b & 3840;
+			f->bgrid[p + (f->grid_size * 2)] |= b & 240;
 			f->bgrid[p + (f->grid_size * 3)] |= b & 15;
 			return (1);
 		}
@@ -75,6 +72,7 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 	int		ret;
 
 	ret = insert_bin(x, n);
+	/*
 	if (ret == 1)
 	{
 		if (n + 1 < x->elements_count)
@@ -84,6 +82,8 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 	}
 	else
 		return (0);
+	*/
+	return (0);
 }
 
 int						trouvator(t_list *lst)
