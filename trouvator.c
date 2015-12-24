@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/24 14:01:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/24 14:04:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ static unsigned short	revbits(unsigned short b)
 static int				canfit(t_fillit *f, unsigned int p, unsigned short b,
 		const unsigned short tab[4])
 {
-	unsigned char	x;
+	unsigned char			x;
+	const unsigned int		gs = f->grid_size;
 
 	x = 4;
 	while (x--)
-		if ((f->bgrid[p] & ((b & (tab[x] << (4 * (4  - x)))))) != 0)
+		if ((f->bgrid[p + (x * gs)] & ((b & (tab[x] << (4 * (4  - x)))))) != 0)
 			return (0);
 	return (1);
 }
