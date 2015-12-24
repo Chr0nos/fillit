@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 18:05:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/24 17:34:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void				displaybin(t_fillit *f);
 unsigned short		binarizator_of_doom(char *s);
 void				removator(t_fillit *x, char letter);
 int					tetro_width(t_element *t, int line);
+int					insert_bin(t_fillit *f, unsigned int n);
 
 #endif
