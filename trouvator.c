@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/24 13:42:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/24 13:44:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ static int				insert_bin(t_fillit *f, unsigned int n)
 			b <<= 1;
 		if (canfit(f, p, b, bintab))
 		{
-			f->bgrid[p] |= b & 61440;
-			f->bgrid[p + f->grid_size] |= b & 3840;
-			f->bgrid[p + (f->grid_size * 2)] |= b & 240;
-			f->bgrid[p + (f->grid_size * 3)] |= b & 15;
+			f->bgrid[p] |= b & bintab[0];
+			f->bgrid[p + f->grid_size] |= b & bintab[1];
+			f->bgrid[p + (f->grid_size * 2)] |= b & bintab[2];
+			f->bgrid[p + (f->grid_size * 3)] |= b & bintab[3];
 			return (1);
 		}
 		p++;
