@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 18:30:06 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/24 13:31:39 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ static unsigned short	revbits(unsigned short b)
 	return (x);
 }
 
+static int				canfit(t_fillit *f, unsigned int p, unsigned short b)
+{
+	unsigned short	tab[4];
+	unsigned char	x;
+
+	x = 4;
+	tab[0] = 32720;
+	tab[1] = 1920;
+	tab[2] = 240;
+	tab[3] = 15;
+	while (x--)
+		if ((f->bgrid[p] & (b & (x))) != 0)
+			return (0);
+	return (1);
+}
+
 static int				insert_bin(t_fillit *f, unsigned int n)
 {
 	unsigned short			b;
@@ -38,11 +54,14 @@ static int				insert_bin(t_fillit *f, unsigned int n)
 	while (p < end)
 	{
 		b = bo;
-		while (((f->bgrid[p] & b) != 0) && ((b & 32768) == 0))
+		while ((!canfit(f, p, b)) && ((b & 32720) == 0))
 			b <<= 1;
-		if ((f->bgrid[p] & b) == 0)
+		if (canfit(f, p, b))
 		{
-			f->bgrid[p] |= b;
+			f->bgrid[p] |= b & 30720;
+			f->bgrid[p + f->grid_size] |= b & 1920;
+			f->bgrid[p + (f->grid_size * 2)] |= b & 1920;
+			f->bgrid[p + (f->grid_size * 3)] |= b & 15;
 			return (1);
 		}
 		p++;
