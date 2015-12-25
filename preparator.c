@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 10:30:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/25 17:33:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	prepair_elem(char *s, t_element *elem, char letter)
 	elem->data = ft_strsplit(s, '\n');
 	elem->bin = binarizator_of_doom(s);
 	elem->letter = letter;
+	elem->pos = 0;
 }
 
 t_fillit	*preparator(t_list *lst)

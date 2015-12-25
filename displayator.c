@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/24 16:03:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/25 17:16:38 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,13 @@ static void	display_tetrominos(t_fillit *x)
 static void	display_bgrid_bits(t_fillit *x)
 {
 	unsigned int	p;
-	unsigned int	end;
 
-	end = x->grid_size * x->grid_size;
 	p = 0;
-	while (p < end)
+	while (p < x->grid_size)
 	{
 		display_bits(x->bgrid[p++]);
-		ft_putchar(' ');
-		if (p % x->grid_size == 0)
-			ft_putchar('\n');
+		ft_putchar('\n');
 	}
-	ft_putchar('\n');
 }
 
 void		displayator(t_fillit *x)
@@ -92,5 +87,4 @@ void		displayator(t_fillit *x)
 	while (p < x->grid_size)
 		ft_putnendl(x->grid[p++], x->grid_size);
 	display_bgrid_bits(x);
-	displaybin(x);
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/24 17:34:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/25 17:33:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define TETRA_BASE 5
 # define TETRA_HEIGH 4
 # define TETRA_BLOCS 4
-# define GRID_EDGE 20
+# define GRID_EDGE 16
 # define BUFF_SIZE TETRA_BASE * TETRA_HEIGH + 1
 
 typedef struct		s_element
@@ -26,14 +26,14 @@ typedef struct		s_element
 	char			letter;
 	unsigned char	height;
 	unsigned char	width;
-	unsigned char	padding;
+	unsigned char	pos;
 	unsigned short	bin;
 	short			padding2;
 }					t_element;
 
 typedef struct		s_fillit
 {
-	unsigned short	bgrid[GRID_EDGE * GRID_EDGE];
+	unsigned short	bgrid[GRID_EDGE];
 	char			grid[GRID_EDGE][GRID_EDGE];
 	unsigned int	elements_count;
 	unsigned int	grid_size;
@@ -47,7 +47,6 @@ int					trouvator(t_list *lst);
 void				liberator(t_fillit *x);
 void				grid_reset(t_fillit *x);
 void				displayator(t_fillit *x);
-void				displaybin(t_fillit *f);
 unsigned short		binarizator_of_doom(char *s);
 void				removator(t_fillit *x, char letter);
 int					tetro_width(t_element *t, int line);
