@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/25 17:33:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/25 18:00:00 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ typedef struct		s_element
 	unsigned char	height;
 	unsigned char	width;
 	unsigned char	pos;
+	unsigned short	mask;
 	unsigned short	bin;
-	short			padding2;
+	long			padding;
 }					t_element;
 
 typedef struct		s_fillit
