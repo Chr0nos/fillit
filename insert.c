@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/25 17:59:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 11:07:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int						insert_bin(t_fillit *f, unsigned int n)
 		if ((canfit(f, p, b, bintab)) && (x = 4))
 		{
 			ft_putendl("placed");
-			f->elems[n].pos = (unsigned char)p;
+			f->elems[n].pos = (unsigned short)p;
 			f->elems[n].mask = b;
 			while (x--)
 				f->bgrid[p + x] |= (b & bintab[x]) << (4 * x);
