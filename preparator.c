@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 12:27:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 12:36:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	prepair_elem(char *s, t_element *elem, char letter)
 {
 	elem->bin = binarizator_of_doom(s);
 	elem->height = tetro_height(elem->bin);
-	elem->width = (unsigned char)ft_strsublen(s, '\n');
+	elem->width = tetro_width(elem->bin);
 	elem->data = ft_strsplit(s, '\n');
 	elem->letter = letter;
 	elem->pos = 0;

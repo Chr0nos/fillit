@@ -6,24 +6,25 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 16:35:01 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 12:27:12 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 12:35:27 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		tetro_width(t_element *t, int line)
+unsigned char	tetro_width(unsigned short b)
 {
-	char	*s;
-	int		p;
+	unsigned char	w;
+	unsigned short	bits;
 
-	s = t->data[line];
-	while ((*s) && (*s == '.'))
-		s++;
-	p = 0;
-	while ((s[p] != '\0') && (s[p] != '.'))
-		p++;
-	return (p);
+	bits = 34952;
+	w = 0;
+	while (b & bits)
+	{
+		bits >>= 1;
+		w++;
+	}
+	return (w);
 }
 
 unsigned char	tetro_height(unsigned short b)
