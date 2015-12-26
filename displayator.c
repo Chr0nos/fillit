@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/25 17:16:38 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 12:56:54 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,6 @@ static void	display_bgrid_bits(t_fillit *x)
 
 void		displayator(t_fillit *x)
 {
-	size_t	p;
-
 	display_tetrominos(x);
-	p = 0;
-	while (p < x->grid_size)
-		ft_putnendl(x->grid[p++], x->grid_size);
 	display_bgrid_bits(x);
 }
