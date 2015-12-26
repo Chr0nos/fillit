@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 14:01:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 14:15:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ static unsigned short	revbits(unsigned short b)
 ** return: 1 if the tetro can fit line "p", in other case 0
 */
 
-static int				canfit(t_fillit *f, unsigned int p, unsigned short b)
+static int				canfit(t_fillit *f, unsigned int p, unsigned int n,
+		unsigned short b)
 {
 	unsigned char			x;
 	unsigned short			mask;
 
-	if (p + (unsigned int)tetro_height(b) > f->grid_size)
+	if (p + f->elems[n].height > f->grid_size)
 		return (0);
 	x = 16;
 	mask = 1;
@@ -66,15 +67,14 @@ static int				canfit(t_fillit *f, unsigned int p, unsigned short b)
 	return (1);
 }
 
-static unsigned short	movebits(t_fillit *f, unsigned int p, unsigned short b)
+static unsigned short	movebits(t_fillit *f, unsigned int p, unsigned int n,
+		unsigned short b)
 {
-	while ((!canfit(f, p, b)) && ((b & 15) == 0))
+	while ((!canfit(f, p, n, b)) && ((b & 15) == 0))
 	{
 		b >>= 1;
 		ft_putbits(&b, sizeof(unsigned short));
 	}
-	(void)f;
-	(void)p;
 	return (b);
 }
 
@@ -92,8 +92,8 @@ int						insert_bin(t_fillit *f, unsigned int n)
 		ft_putchar(f->elems[n].letter);
 		ft_putchar('\n');
 		ft_putbits(&b, sizeof(unsigned short));
-		b = movebits(f, p, bo);
-		if ((canfit(f, p, b)) && (x = 4))
+		b = movebits(f, p, n, bo);
+		if ((canfit(f, p, n, b)) && (x = 4))
 		{
 			ft_putendl("placed");
 			f->elems[n].pos = (unsigned short)p;
@@ -106,4 +106,3 @@ int						insert_bin(t_fillit *f, unsigned int n)
 	}
 	return (0);
 }
-
