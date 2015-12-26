@@ -22,7 +22,8 @@ OBJ=main.o \
 	displayator.o \
 	binarizator_of_doom.o \
 	removator.o \
-	insert.o
+	insert.o \
+	tetro_checks.o
 
 all: $(NAME)
 $(NAME): $(OBJ)

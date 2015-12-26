@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 12:55:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 13:09:46 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void				removator(t_fillit *x, unsigned int n);
 unsigned char		tetro_width(unsigned short b);
 unsigned char		tetro_height(unsigned short b);
 int					insert_bin(t_fillit *f, unsigned int n);
+int					check_line(char *buffer, int len);
 
 #endif
