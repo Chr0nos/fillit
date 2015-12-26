@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 13:56:55 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 14:01:02 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static int				canfit(t_fillit *f, unsigned int p, unsigned short b)
 	unsigned char			x;
 	unsigned short			mask;
 
+	if (p + (unsigned int)tetro_height(b) > f->grid_size)
+		return (0);
 	x = 16;
 	mask = 1;
 	while ((x--) && (!(b & mask)))
