@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 11:07:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 12:21:47 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,20 @@ static int				canfit(t_fillit *f, unsigned int p, unsigned short b,
 	return (1);
 }
 
+static unsigned short	movebits(t_fillit *f, unsigned int p, unsigned short b,
+		const unsigned short bintab[4])
+{
+	//while ((!canfit(f, p, b, bintab)) && ((b & 15) == 0))
+	//{
+	//	b >>= 1;
+	//	ft_putbits(&b, sizeof(unsigned short));
+	//}
+	(void)f;
+	(void)p;
+	(void)bintab;
+	return (b);
+}
+
 int						insert_bin(t_fillit *f, unsigned int n)
 {
 	unsigned short			b;
@@ -55,15 +69,10 @@ int						insert_bin(t_fillit *f, unsigned int n)
 	p = 0;
 	while (p < f->grid_size)
 	{
-		b = bo;
 		ft_putchar(f->elems[n].letter);
 		ft_putchar('\n');
 		ft_putbits(&b, sizeof(unsigned short));
-		//while ((!canfit(f, p, b, bintab)) && ((b & 15) == 0))
-		//{
-		//	b >>= 1;
-		//	ft_putbits(&b, sizeof(unsigned short));
-		//}
+		b = movebits(f, p, bo, bintab);
 		if ((canfit(f, p, b, bintab)) && (x = 4))
 		{
 			ft_putendl("placed");
