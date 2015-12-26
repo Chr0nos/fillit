@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 13:44:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 13:56:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ static int				canfit(t_fillit *f, unsigned int p, unsigned short b)
 	unsigned char			x;
 	unsigned short			mask;
 
+	x = 16;
+	mask = 1;
+	while ((x--) && (!(b & mask)))
+	{
+		mask <<= 1;
+	}
+	if (x > f->grid_size)
+		return (0);
 	x = 0;
 	mask = 15;
 	while (x < 4)
@@ -58,11 +66,11 @@ static int				canfit(t_fillit *f, unsigned int p, unsigned short b)
 
 static unsigned short	movebits(t_fillit *f, unsigned int p, unsigned short b)
 {
-	//while ((!canfit(f, p, b)) && ((b & 15) == 0))
-	//{
-	//	b >>= 1;
-	//	ft_putbits(&b, sizeof(unsigned short));
-	//}
+	while ((!canfit(f, p, b)) && ((b & 15) == 0))
+	{
+		b >>= 1;
+		ft_putbits(&b, sizeof(unsigned short));
+	}
 	(void)f;
 	(void)p;
 	return (b);
