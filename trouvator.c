@@ -6,11 +6,12 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 11:39:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 12:50:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdlib.h>
 
 static int				trouvator_engine(t_fillit *x, unsigned int n)
 {
@@ -43,6 +44,7 @@ int						trouvator(t_list *lst)
 		return (-1);
 	trouvator_engine(fillit, 0);
 	displayator(fillit);
-	liberator(fillit);
+	free(fillit->elems);
+	free(fillit);
 	return (0);
 }

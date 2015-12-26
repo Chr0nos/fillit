@@ -17,7 +17,6 @@ OBJ=main.o \
 	read_file.o \
 	tetro_info.o \
 	preparator.o \
-	liberator.o \
 	trouvator.o \
 	grid_reset.o \
 	displayator.o \

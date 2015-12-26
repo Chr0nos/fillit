@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 12:45:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 12:50:06 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int					main(int ac, char **av);
 int					read_file(const char *file, t_list **lst);
 t_fillit			*preparator(t_list *lst);
 int					trouvator(t_list *lst);
-void				liberator(t_fillit *x);
 void				grid_reset(t_fillit *x);
 void				displayator(t_fillit *x);
 unsigned short		binarizator_of_doom(char *s);
