@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 12:35:35 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 12:45:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 typedef struct		s_element
 {
-	char			**data;
 	char			letter;
 	unsigned char	height;
 	unsigned char	width;
