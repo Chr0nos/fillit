@@ -6,11 +6,15 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 12:21:47 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 13:44:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+/*
+** revert bits order
+*/
 
 static unsigned short	revbits(unsigned short b)
 {
@@ -27,34 +31,40 @@ static unsigned short	revbits(unsigned short b)
 	return (x);
 }
 
-static int				canfit(t_fillit *f, unsigned int p, unsigned short b,
-		const unsigned short tab[4])
+/*
+** f = fillit structure
+** p = current line
+** b = binarized tetromino
+** tab = binaries masks table
+** return: 1 if the tetro can fit line "p", in other case 0
+*/
+
+static int				canfit(t_fillit *f, unsigned int p, unsigned short b)
 {
 	unsigned char			x;
 	unsigned short			mask;
 
 	x = 0;
+	mask = 15;
 	while (x < 4)
 	{
-		mask = (b << (4 * x)) & tab[x];
-		if ((f->bgrid[p] & mask) != 0)
+		if ((f->bgrid[p] & (b & mask)) != 0)
 			return (0);
+		mask <<= 4;
 		++x;
 	}
 	return (1);
 }
 
-static unsigned short	movebits(t_fillit *f, unsigned int p, unsigned short b,
-		const unsigned short bintab[4])
+static unsigned short	movebits(t_fillit *f, unsigned int p, unsigned short b)
 {
-	//while ((!canfit(f, p, b, bintab)) && ((b & 15) == 0))
+	//while ((!canfit(f, p, b)) && ((b & 15) == 0))
 	//{
 	//	b >>= 1;
 	//	ft_putbits(&b, sizeof(unsigned short));
 	//}
 	(void)f;
 	(void)p;
-	(void)bintab;
 	return (b);
 }
 
@@ -72,8 +82,8 @@ int						insert_bin(t_fillit *f, unsigned int n)
 		ft_putchar(f->elems[n].letter);
 		ft_putchar('\n');
 		ft_putbits(&b, sizeof(unsigned short));
-		b = movebits(f, p, bo, bintab);
-		if ((canfit(f, p, b, bintab)) && (x = 4))
+		b = movebits(f, p, bo);
+		if ((canfit(f, p, b)) && (x = 4))
 		{
 			ft_putendl("placed");
 			f->elems[n].pos = (unsigned short)p;
