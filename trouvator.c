@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/25 17:36:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 11:39:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 
 	ret = insert_bin(x, n);
 	if (n == 1)
+	{
+		removator(x, 0);
 		return (0);
+	}
 	if (ret == 1)
 	{
 		if (n + 1 < x->elements_count)
