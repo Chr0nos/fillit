@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:53:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/25 17:53:22 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/26 13:03:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,7 @@ int				read_file(const char *file, t_list **lst)
 		return (1);
 	while ((ret = (int)read(fd, buffer, BUFF_SIZE)))
 	{
-		if ((ret < 0) && ((err = 1)))
-			break ;
-		if ((buffer[ret] = '\0') && (ret == 0))
+		if (((ret < 0) && ((err = 1))) || ((buffer[ret] = '\0') && (ret == 0)))
 			break ;
 		else if (check_line((char *)buffer, ret) == 1)
 			ft_lstpush_back(lst, ft_lstnew(buffer, (size_t)ret + 1));
