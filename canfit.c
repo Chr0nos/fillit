@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 15:04:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 16:12:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,23 @@ static int			canfit_height(t_fillit *f, unsigned int p, unsigned int n)
 }
 
 static int			canfit_horizontal(t_fillit *f, unsigned int p,
-		unsigned short b)
+		t_element *bloc)
 {
 	unsigned char	x;
 	unsigned short	mask;
 
 	x = 0;
-	while (x < 4)
+	mask = revbits(bloc->bin) & 61440;
+	while ((mask & 32768) == 0)
+		mask <<= 1;
+	while ((mask & f->bgrid[p]) && !(mask & 1))
 	{
-		mask = b & (61440 >> (x * 4));
-		if (f->bgrid[p] & mask)
-			return (0);
 		++x;
+		mask >>= 1;
 	}
-	return (1);
+	if (!(mask & f->bgrid[p]))
+		return (x);
+	return (-1)
 }
 
 static int			canfit_vertical(t_fillit *f, unsigned int p,
@@ -66,11 +69,10 @@ static int			canfit_vertical(t_fillit *f, unsigned int p,
 int					canfit(t_fillit *f, unsigned int p, unsigned int n,
 		unsigned short b)
 {
-	if (!canfit_height(f, p, n))
-		return (0);
-	if (!canfit_horizontal(f, p, b))
-		return (0);
-	if (!canfit_vertical(f, p, b))
-		return (0);
+	int		x;
+
+	x = -1;
+	x = canfit_horizontal(f, f->elems + n);
+	
 	return (1);
 }

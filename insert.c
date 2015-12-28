@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 14:00:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 15:41:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,10 @@ static unsigned short	revbits(unsigned short b)
 	unsigned short	x;
 	int				p;
 
-	x = 0;
-	p = 0;
-	while (p < 16)
-	{
-		x |= ((b >> p) & 1) << (15 - p);
-		++p;
-	}
+	p = 15;
+	x = (unsigned short)((b & 1) << 15);
+	while ((b >>= 1))
+		x |= (unsigned short)((b & 1) << (--p));
 	return (x);
 }
 
