@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 14:11:45 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 12:29:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 21:55:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,18 @@
 ** the idea is to remove along the 4 maximum lines (defined by .height)
 */
 
-void					removator(t_fillit *x, unsigned int n)
+void					removator(t_fillit *f, unsigned int n)
 {
-	const unsigned short	mask = x->elems[n].mask;
 	unsigned short			b;
-	unsigned short			p;
-	unsigned short			submask;
+	unsigned char			p;
+	unsigned char			x;
 
-	submask = 15;
-	p = 0;
-	while (p < x->elems[n].height)
-	{
-		b = x->bgrid[x->elems[n].pos + p];
-		x->bgrid[x->elems[n].pos + p] = (b & (mask & submask));
-		submask <<= 4;
-		p++;
-	}
-	x->elems[n].mask = 0;
+	b = f->elems[n].bin;
+	p = (unsigned char)(f->elems[n].pos >> 8);
+	x = (unsigned char)(f->elems[n].pos & 255);
+	f->bgrid[p] ^= (b & 61440) >> x;
+	f->bgrid[p + 1] ^= ((b << 4) & 61440) >> x;
+	f->bgrid[p + 2] ^= ((b << 8) & 61440) >> x;
+	f->bgrid[p + 3] ^= ((b << 12) & 61440) >> x;
+	f->elems[n].mask = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 13:35:02 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 21:55:15 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 #include <string.h>
 #include <stdlib.h>
 
+/*
+** revert bits order
+*/
+
+static unsigned short	revbits(unsigned short b)
+{
+	unsigned short	x;
+	int				p;
+
+	p = 15;
+	x = (unsigned short)((b & 1) << 15);
+	while ((b >>= 1))
+		x |= (unsigned short)((b & 1) << (--p));
+	return (x);
+}
+
 static void	prepair_elem(char *s, t_element *elem, char letter)
 {
 	elem->bin = binarizator_of_doom(s);
@@ -22,6 +38,7 @@ static void	prepair_elem(char *s, t_element *elem, char letter)
 	elem->width = tetro_width(elem->bin);
 	elem->letter = letter;
 	elem->pos = 0;
+	elem->bin = revbits(elem->bin);
 }
 
 t_fillit	*preparator(t_list *lst)

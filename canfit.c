@@ -6,56 +6,45 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 16:12:19 by qloubier         ###   ########.fr       */
+/*   Updated: 2015/12/28 21:32:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 
-static int			canfit_height(t_fillit *f, unsigned int p, unsigned int n)
+static int	canfit_height(t_fillit *f, unsigned int p, unsigned int n)
 {
 	if (p + f->elems[n].height > f->grid_size)
 		return (0);
 	return (1);
 }
 
-static int			canfit_horizontal(t_fillit *f, unsigned int p,
-		t_element *bloc)
+static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, int x)
 {
-	unsigned char	x;
 	unsigned short	mask;
 
-	x = 0;
-	mask = revbits(bloc->bin) & 61440;
-	while ((mask & 32768) == 0)
-		mask <<= 1;
-	while ((mask & f->bgrid[p]) && !(mask & 1))
-	{
-		++x;
-		mask >>= 1;
-	}
-	if (!(mask & f->bgrid[p]))
-		return (x);
-	return (-1)
+	mask = bloc->bin;
+	if(((bloc->height + p) <= f->grid_size) &&
+		!((((mask << 4) & 61440) >> x) & f->bgrid[p + 1]) && 
+		!((((mask << 8) & 61440) >> x) & f->bgrid[p + 2]) &&
+		!((((mask << 12) & 61440) >> x) & f->bgrid[p + 3]))
+		return (1);
+	return (0)
 }
 
-static int			canfit_vertical(t_fillit *f, unsigned int p,
-		unsigned short b)
+static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc)
 {
-	unsigned short	mask;
 	unsigned char	x;
+	unsigned short	mask;
 
-	mask = 7680;
 	x = 0;
-	while (x < 4)
-	{
-		mask = b & (7680 >> (x * 4));
-		if (f->bgrid[p] & mask)
-			return (0);
-		x++;
-	}
-	return (1);
+	mask = bloc->bin & 61440;
+	while ((mask & f->bgrid[p]) && (x++ < (f->grid_size - bloc->width)))
+		mask >>= 1;
+	if ((x < (f->grid_size - bloc->width)))
+		return (x);
+	return (-1);
 }
 
 /*
@@ -66,13 +55,15 @@ static int			canfit_vertical(t_fillit *f, unsigned int p,
  * ** return: 1 if the tetro can fit line "p", in other case 0
  * */
 
-int					canfit(t_fillit *f, unsigned int p, unsigned int n,
-		unsigned short b)
+int			canfit(t_fillit *f, size_t p, unsigned int n)
 {
 	int		x;
 
 	x = -1;
-	x = canfit_horizontal(f, f->elems + n);
-	
-	return (1);
+	while ((x = canfit_horizontal(f, p, f->elems + n)) != -1)
+	{
+		if (canfit_bloc(f, p, f->elems + n))
+			return (x);
+	}
+	return (-1);
 }
