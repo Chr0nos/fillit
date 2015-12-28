@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 13:16:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 14:00:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ unsigned char		tetro_width(unsigned short b);
 unsigned char		tetro_height(unsigned short b);
 int					insert_bin(t_fillit *f, unsigned int n);
 int					check_line(char *buffer, int len);
+int					canfit(t_fillit *f, unsigned int p, unsigned int n,
+		unsigned short b);
 
 #endif

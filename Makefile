@@ -23,7 +23,8 @@ OBJ=main.o \
 	binarizator_of_doom.o \
 	removator.o \
 	insert.o \
-	tetro_checks.o
+	tetro_checks.o \
+	canfit.o
 
 all: $(NAME)
 $(NAME): $(OBJ)

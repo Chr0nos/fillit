@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 14:47:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 13:48:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 			return (1);
 	}
 	ft_putendl("failed to place element");
+	removator(x, n);
+	//ft_memset(x->bgrid, 0, sizeof(unsigned short) * x->grid_size);
 	return (0);
 }
 
@@ -37,7 +39,11 @@ int						trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
-	trouvator_engine(fillit, 0);
+	while ((trouvator_engine(fillit, 0) == 0) && (fillit->grid_size < 16))
+	{
+		fillit->grid_size += 1;
+		ft_printf("setting grid size to %d\n", fillit->grid_size);
+	}
 	displayator(fillit);
 	free(fillit->elems);
 	free(fillit);

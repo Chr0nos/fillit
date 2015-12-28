@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 14:15:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 14:00:43 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,49 +31,13 @@ static unsigned short	revbits(unsigned short b)
 	return (x);
 }
 
-/*
-** f = fillit structure
-** p = current line
-** b = binarized tetromino
-** tab = binaries masks table
-** return: 1 if the tetro can fit line "p", in other case 0
-*/
-
-static int				canfit(t_fillit *f, unsigned int p, unsigned int n,
-		unsigned short b)
-{
-	unsigned char			x;
-	unsigned short			mask;
-
-	if (p + f->elems[n].height > f->grid_size)
-		return (0);
-	x = 16;
-	mask = 1;
-	while ((x--) && (!(b & mask)))
-	{
-		mask <<= 1;
-	}
-	if (x > f->grid_size)
-		return (0);
-	x = 0;
-	mask = 15;
-	while (x < 4)
-	{
-		if ((f->bgrid[p] & (b & mask)) != 0)
-			return (0);
-		mask <<= 4;
-		++x;
-	}
-	return (1);
-}
-
 static unsigned short	movebits(t_fillit *f, unsigned int p, unsigned int n,
 		unsigned short b)
 {
-	while ((!canfit(f, p, n, b)) && ((b & 15) == 0))
+	while ((!canfit(f, p, n, b)) && ((b & 30) == 0))
 	{
 		b >>= 1;
-		ft_putbits(&b, sizeof(unsigned short));
+		//ft_putbits(&b, sizeof(unsigned short));
 	}
 	return (b);
 }
@@ -93,6 +57,7 @@ int						insert_bin(t_fillit *f, unsigned int n)
 		ft_putchar('\n');
 		ft_putbits(&b, sizeof(unsigned short));
 		b = movebits(f, p, n, bo);
+		b = bo;
 		if ((canfit(f, p, n, b)) && (x = 4))
 		{
 			ft_putendl("placed");

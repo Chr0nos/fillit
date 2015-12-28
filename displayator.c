@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 12:56:54 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 13:46:01 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ static void	display_tetro_of_the_infinite_agony(t_element *t)
 
 static void	display_bits(unsigned short nb)
 {
-	char	buffer[17];
+	char	buffer[33];
 	int		p;
 
 	p = 16;
-	buffer[p--] = '\0';
-	p++;
+	buffer[32] = '\0';
 	while (p--)
-		buffer[p] = ((nb >> (15 - p) & (unsigned short)1) ? '1' : '0');
+	{
+		buffer[(p * 2) + 1] = ((nb >> (15 - p) & (unsigned short)1) ? '1' : '0');
+		buffer[(p * 2)] = ' ';
+	}
 	ft_putstr(buffer);
 }
 
