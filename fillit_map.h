@@ -6,13 +6,13 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 13:11:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2015/12/28 13:14:32 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_MAP_H
 # define FILLIT_MAP_H
-#include "fillit.h"
+# include "fillit.h"
 
 typedef unsigned short tetrobloc;
 
