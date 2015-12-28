@@ -6,11 +6,54 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 13:59:51 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 15:04:07 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+
+static int			canfit_height(t_fillit *f, unsigned int p, unsigned int n)
+{
+	if (p + f->elems[n].height > f->grid_size)
+		return (0);
+	return (1);
+}
+
+static int			canfit_horizontal(t_fillit *f, unsigned int p,
+		unsigned short b)
+{
+	unsigned char	x;
+	unsigned short	mask;
+
+	x = 0;
+	while (x < 4)
+	{
+		mask = b & (61440 >> (x * 4));
+		if (f->bgrid[p] & mask)
+			return (0);
+		++x;
+	}
+	return (1);
+}
+
+static int			canfit_vertical(t_fillit *f, unsigned int p,
+		unsigned short b)
+{
+	unsigned short	mask;
+	unsigned char	x;
+
+	mask = 7680;
+	x = 0;
+	while (x < 4)
+	{
+		mask = b & (7680 >> (x * 4));
+		if (f->bgrid[p] & mask)
+			return (0);
+		x++;
+	}
+	return (1);
+}
 
 /*
  * ** f = fillit structure
@@ -23,25 +66,11 @@
 int					canfit(t_fillit *f, unsigned int p, unsigned int n,
 		unsigned short b)
 {
-	unsigned char			x;
-	unsigned short			mask;
-
-	if (p + f->elems[n].height > f->grid_size)
+	if (!canfit_height(f, p, n))
 		return (0);
-	x = 16;
-	mask = 1;
-	while ((x--) && (!(b & mask)))
-		mask <<= 1;
-	if (x > f->grid_size)
+	if (!canfit_horizontal(f, p, b))
 		return (0);
-	x = 0;
-	mask = 15;
-	while (x < 4)
-	{
-		if ((f->bgrid[p] & (b & mask)) != 0)
-			return (0);
-		mask <<= 4;
-		++x;
-	}
+	if (!canfit_vertical(f, p, b))
+		return (0);
 	return (1);
 }
