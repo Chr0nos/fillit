@@ -25,17 +25,15 @@ static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, int x)
 	return (0);
 }
 
-static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc)
+static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc, size_t x)
 {
-	unsigned char	x;
 	unsigned short	mask;
 
-	x = 0;
-	mask = bloc->bin & 61440;
+	mask = (bloc->bin & 61440) >> x;
 	while ((mask & f->bgrid[p]) && (x++ < (f->grid_size - bloc->width)))
 		mask >>= 1;
 	if ((x < (f->grid_size - bloc->width)))
-		return (x);
+		return ((int)x);
 	return (-1);
 }
 
@@ -51,11 +49,12 @@ int			canfit(t_fillit *f, size_t p, unsigned int n)
 {
 	int		x;
 
-	x = -1;
-	while ((x = canfit_horizontal(f, p, f->elems + n)) != -1)
+	x = 0;
+	while ((x = canfit_horizontal(f, p, f->elems + n, (size_t)x)) != -1)
 	{
 		if (canfit_bloc(f, p, f->elems + n, x))
 			return (x);
+		++x;
 	}
 	return (-1);
 }
