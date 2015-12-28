@@ -26,14 +26,15 @@ OBJ=main.o \
 	tetro_checks.o \
 	canfit.o
 
-all: $(NAME)
-$(NAME): libft $(OBJ)
+all: libft $(NAME)
+$(NAME): $(OBJ)
 	$(GCC) $(OBJ) -o $(NAME) -I $(LIBFT) -L $(LIBFT) -lft
 %.o: %.c
 	$(GCC) -c -I $(LIBFT) $<
 clean:
 	rm -f $(OBJ)
 fclean: clean
+	make -C $(LIBFT) fclean
 	rm -f $(NAME)
 re: fclean libftre all
 libft:
