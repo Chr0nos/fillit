@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:53:29 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 13:21:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 12:45:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int				read_file(const char *file, t_list **lst)
 	close(fd);
 	if (lret != 20)
 		err = 1;
-	if ((lst) && (ft_lstsize(*lst) > TETRO_MAX) && ((err = 1)))
+	if (((lst) && (ft_lstsize(*lst) > TETRO_MAX) && ((err = 1))) || (err))
 		ft_lstdel(lst, &ft_lstpulverisator);
 	return (err);
 }

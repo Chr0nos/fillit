@@ -6,13 +6,14 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/26 13:09:46 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/28 12:58:50 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 # include "libft.h"
+# include "fillit_map.h"
 # define TETRO_MAX 26
 # define TETRA_BASE 5
 # define TETRA_HEIGH 4
