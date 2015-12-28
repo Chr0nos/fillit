@@ -27,7 +27,7 @@ OBJ=main.o \
 	canfit.o
 
 all: $(NAME)
-$(NAME): $(OBJ)
+$(NAME): libft $(OBJ)
 	$(GCC) $(OBJ) -o $(NAME) -I $(LIBFT) -L $(LIBFT) -lft
 %.o: %.c
 	$(GCC) -c -I $(LIBFT) $<
@@ -35,4 +35,10 @@ clean:
 	rm -f $(OBJ)
 fclean: clean
 	rm -f $(NAME)
-re: fclean all
+re: fclean libftre all
+libft:
+	make -C $(LIBFT)
+libftre:
+	make -C $(LIBFT) re
+
+.PHONY: libft libftre clean re fclean
