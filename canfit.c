@@ -6,19 +6,11 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 21:32:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2015/12/28 22:13:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-
-static int	canfit_height(t_fillit *f, unsigned int p, unsigned int n)
-{
-	if (p + f->elems[n].height > f->grid_size)
-		return (0);
-	return (1);
-}
 
 static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, int x)
 {
@@ -30,7 +22,7 @@ static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, int x)
 		!((((mask << 8) & 61440) >> x) & f->bgrid[p + 2]) &&
 		!((((mask << 12) & 61440) >> x) & f->bgrid[p + 3]))
 		return (1);
-	return (0)
+	return (0);
 }
 
 static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc)
@@ -62,7 +54,7 @@ int			canfit(t_fillit *f, size_t p, unsigned int n)
 	x = -1;
 	while ((x = canfit_horizontal(f, p, f->elems + n)) != -1)
 	{
-		if (canfit_bloc(f, p, f->elems + n))
+		if (canfit_bloc(f, p, f->elems + n, x))
 			return (x);
 	}
 	return (-1);
