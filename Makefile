@@ -41,5 +41,8 @@ libft:
 	make -C $(LIBFT)
 libftre:
 	make -C $(LIBFT) re
+norminette:
+	make -C $(LIBFT) norminette
+	norminette *.[ch]
 
 .PHONY: libft libftre clean re fclean
