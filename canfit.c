@@ -12,12 +12,26 @@
 
 #include "fillit.h"
 
-static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, int x)
+static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, size_t x)
 {
 	unsigned short	mask;
 
 	mask = bloc->bin;
-	if(((bloc->height + p) <= f->grid_size) &&
+
+	ft_putnbr((int)(bloc->height + p));
+	ft_putchar('-');
+	ft_putnbr((int)(bloc->width + x));
+	ft_putchar('-');
+	ft_putnbr((int)(f->grid_size));
+	ft_putchar(' ');
+	ft_putnbr((int)((((mask << 4) & 61440) >> x) & f->bgrid[p + 1]));
+	ft_putchar(' ');
+	ft_putnbr((int)((((mask << 8) & 61440) >> x) & f->bgrid[p + 2]));
+	ft_putchar(' ');
+	ft_putnbr((int)((((mask << 12) & 61440) >> x) & f->bgrid[p + 3]));
+	ft_putchar('\n');
+	if(((bloc->height + p) < f->grid_size) &&
+		((bloc->width + x) < f->grid_size) &&
 		!((((mask << 4) & 61440) >> x) & f->bgrid[p + 1]) && 
 		!((((mask << 8) & 61440) >> x) & f->bgrid[p + 2]) &&
 		!((((mask << 12) & 61440) >> x) & f->bgrid[p + 3]))
@@ -30,11 +44,13 @@ static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc, size_t x)
 	unsigned short	mask;
 
 	mask = (bloc->bin & 61440) >> x;
-	while ((mask & f->bgrid[p]) && (x++ < (f->grid_size - bloc->width)))
+	while (mask & f->bgrid[p])
+	{
 		mask >>= 1;
-	if ((x < (f->grid_size - bloc->width)))
-		return ((int)x);
-	return (-1);
+		if (((++x) + bloc->width) > f->grid_size)
+			return (-1);
+	}
+	return ((int)x);
 }
 
 /*
@@ -49,12 +65,24 @@ int			canfit(t_fillit *f, size_t p, unsigned int n)
 {
 	int		x;
 
+	ft_putchar(f->elems[n].letter);
+	ft_putchar('\n');
+	ft_putnbr((int)p);
+	ft_putstr(" H\n");
+	ft_putnbr((int)(f->bgrid[p]));
+	ft_putstr(" B\n");
+	ft_putnbr((int)(f->elems[n].bin));
+	ft_putstr(" PB\n");
+	//ft_putbits(&(f->elems[n].bin), sizeof(unsigned short));
 	x = 0;
 	while ((x = canfit_horizontal(f, p, f->elems + n, (size_t)x)) != -1)
 	{
-		if (canfit_bloc(f, p, f->elems + n, x))
+		ft_putnbr(x);
+		ft_putstr(" seams good\n");
+		if (canfit_bloc(f, p, f->elems + n, (size_t)x))
 			return (x);
-		++x;
+		if((unsigned int)(++x) >= f->grid_size)
+			break;
 	}
 	return (-1);
 }

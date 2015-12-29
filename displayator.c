@@ -84,4 +84,5 @@ void		displayator(t_fillit *x)
 {
 	display_tetrominos(x);
 	display_bgrid_bits(x);
+	super_display_of_doom(x);
 }

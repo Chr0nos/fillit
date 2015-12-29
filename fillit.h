@@ -56,5 +56,6 @@ unsigned char		tetro_height(unsigned short b);
 int					insert_bin(t_fillit *f, unsigned int n);
 int					check_line(char *buffer, int len);
 int					canfit(t_fillit *f, size_t p, unsigned int n);
+void				super_display_of_doom(t_fillit *f);
 
 #endif

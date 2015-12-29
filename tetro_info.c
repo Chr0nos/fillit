@@ -15,29 +15,31 @@
 unsigned char	tetro_width(unsigned short b)
 {
 	unsigned char	w;
-	unsigned short	bits;
 
-	bits = 34952;
 	w = 0;
-	while (b & bits)
-	{
-		bits >>= 1;
-		w++;
-	}
+	if (b & 4369)
+		++w;
+	if (b & 8738)
+		++w;
+	if (b & 17476)
+		++w;
+	if (b & 34952)
+		++w;
 	return (w);
 }
 
 unsigned char	tetro_height(unsigned short b)
 {
 	unsigned char	h;
-	unsigned short	bits;
 
 	h = 0;
-	bits = 15;
-	while (b & bits)
-	{
-		bits <<= 4;
-		h++;
-	}
+	if (b & 15)
+		++h;
+	if (b & 240)
+		++h;
+	if (b & 3840)
+		++h;
+	if (b & 61440)
+		++h;
 	return (h);
 }

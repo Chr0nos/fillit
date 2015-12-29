@@ -26,8 +26,15 @@ void					removator(t_fillit *f, unsigned int n)
 	unsigned char			x;
 
 	b = f->elems[n].bin;
+	ft_putstr("Removing ... ");
+	ft_putchar(f->elems[n].letter);
+	ft_putchar('\n');
 	p = (unsigned char)(f->elems[n].pos >> 8);
+	ft_putnbr((int)p);
+	ft_putstr(" line\n");
 	x = (unsigned char)(f->elems[n].pos & 255);
+	ft_putnbr((int)x);
+	ft_putstr(" colone\n");
 	f->bgrid[p] ^= (b & 61440) >> x;
 	f->bgrid[p + 1] ^= ((b << 4) & 61440) >> x;
 	f->bgrid[p + 2] ^= ((b << 8) & 61440) >> x;

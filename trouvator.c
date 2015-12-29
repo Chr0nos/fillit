@@ -26,7 +26,7 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 			return (1);
 	}
 	ft_putendl("failed to place element");
-	removator(x, n);
+	//removator(x, n);
 	//ft_memset(x->bgrid, 0, sizeof(unsigned short) * x->grid_size);
 	return (0);
 }
@@ -42,6 +42,7 @@ int						trouvator(t_list *lst)
 	while ((trouvator_engine(fillit, 0) == 0) && (fillit->grid_size < 16))
 	{
 		fillit->grid_size += 1;
+		grid_reset(fillit);
 		ft_printf("setting grid size to %d\n", fillit->grid_size);
 	}
 	displayator(fillit);

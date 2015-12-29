@@ -14,7 +14,6 @@
 
 int						insert_bin(t_fillit *f, unsigned int n)
 {
-	unsigned short			b;
 	const unsigned short	bo = f->elems[n].bin;
 	size_t					p;
 	int						x;
@@ -22,13 +21,14 @@ int						insert_bin(t_fillit *f, unsigned int n)
 	p = 0;
 	while (p + f->elems[n].height <= f->grid_size)
 	{
-		ft_putchar(f->elems[n].letter);
-		ft_putchar('\n');
-		ft_putbits(&b, sizeof(unsigned short));
+		//f->bgrid[p] |= ((unsigned short)65535) >> f->grid_size;
 		x = canfit(f, p, n);
+		f->bgrid[p] &= ((unsigned short)65535) << (16 - f->grid_size);
 		if (x > -1)
 		{
-			ft_putendl("placed");
+			ft_putstr("placed at ");
+			ft_putnbr(x);
+			ft_putchar('\n');
 			f->elems[n].pos = (unsigned short)((unsigned short)(p) << 8);
 			f->elems[n].pos |= (unsigned short)x;
 			f->bgrid[p] |= (bo & 61440) >> x;
