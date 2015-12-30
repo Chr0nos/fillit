@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 19:20:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2015/12/30 20:31:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@ typedef struct		s_element
 	char			letter;
 	unsigned char	height;
 	unsigned char	width;
-	char			padding;
+	char			placed;
 	unsigned short	pos;
 	unsigned short	bin;
-	unsigned short	mask;
 	unsigned short	display;
-	int				padding3;
 }					t_element;
 
 typedef struct		s_fillit
@@ -39,6 +37,8 @@ typedef struct		s_fillit
 	unsigned int	elements_count;
 	unsigned int	grid_size;
 	t_element		*elems;
+	char			map[26];
+	char			padding[6];
 }					t_fillit;
 
 # include "fillit_map.h"
