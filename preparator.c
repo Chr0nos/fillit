@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 21:55:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2015/12/30 11:40:45 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ static unsigned short	revbits(unsigned short b)
 
 static void	prepair_elem(char *s, t_element *elem, char letter)
 {
-	elem->bin = binarizator_of_doom(s);
+	elem->display = binarizator_of_doom(s);
+	elem->bin = elem->display;
 	elem->height = tetro_height(elem->bin);
 	elem->width = tetro_width(elem->bin);
 	elem->letter = letter;
 	elem->pos = 0;
-	elem->bin = revbits(elem->bin);
+	elem->bin = revbits(elem->display);
 }
 
 t_fillit	*preparator(t_list *lst)

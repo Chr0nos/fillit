@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 15:24:16 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 11:41:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	display_tetro_of_the_infinite_agony(t_element *t)
 	int				bit;
 	unsigned short	nb;
 
-	nb = t->bin;
+	nb = t->display;
 	buffer[20] = '\0';
 	p = 0;
 	bit = 0;
