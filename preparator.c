@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 20:30:18 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 20:35:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static void	prepair_elem(char *s, t_element *elem, char letter)
 
 static void	prepair_map(t_fillit *f)
 {
-	unsigned int	p;
+	unsigned char	p;
 
 	p = 26;
 	while (p--)
-		f->map[p] = -1;
+		f->map[p] = ((p > f->elements_count) ? -1 : (char)p);
 }
 
 t_fillit	*preparator(t_list *lst)
