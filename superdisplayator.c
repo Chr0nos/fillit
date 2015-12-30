@@ -38,8 +38,13 @@ void			super_display_of_doom(t_fillit *f)
 	size_t			p;
 
 	p = 0;
+	ft_putstr("Grid size : ");
+	ft_putnbr((int)f->grid_size);
+	ft_putchar('\n');
 	while (p < f->grid_size)
 	{
+		ft_putnbr((int)p);
+		ft_putchar(' ');
 		display_line (f, p);
 		ft_putchar('\n');
 		++p;
