@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 14:11:45 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 21:57:31 by qloubier         ###   ########.fr       */
+/*   Updated: 2015/12/30 19:31:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** the idea is to remove along the 4 maximum lines (defined by .height)
 */
 
-void					removator(t_fillit *f, unsigned int n)
+int					removator(t_fillit *f, unsigned int n)
 {
 	unsigned short			b;
 	unsigned char			p;
@@ -40,4 +40,5 @@ void					removator(t_fillit *f, unsigned int n)
 	f->bgrid[p + 2] ^= ((b << 8) & 61440) >> x;
 	f->bgrid[p + 3] ^= ((b << 12) & 61440) >> x;
 	f->elems[n].mask = 0;
+	return (0);
 }

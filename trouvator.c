@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/28 13:48:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 20:15:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 	int		ret;
 
 	ret = insert_bin(x, n);
-	if (ret == 1)
-	{
-		if (n + 1 < x->elements_count)
-			return (trouvator_engine(x, n + 1));
-		else
-			return (1);
-	}
+	if (ret == 0)
+		return (0);
+	if (n + 1 == x->elements_count)
+		return (1);
+	if(trouvator_engine(x, n + (unsigned int)(ret++)))
+		return (1);
 	ft_putendl("failed to place element");
 	//removator(x, n);
 	//ft_memset(x->bgrid, 0, sizeof(unsigned short) * x->grid_size);
