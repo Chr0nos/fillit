@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 13:52:34 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/23 17:57:49 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/30 17:53:14 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,23 @@
 unsigned short	binarizator_of_doom(char *s)
 {
 	unsigned short			b;
-	unsigned int			p;
-	int						pow;
+	int						p;
+	char					buf[17];
 
+	p = -1;
+	buf[16] = '\0';
+	ft_putendl(buf);
+	while (++p < 4)
+		ft_memcpy(buf + (4 * p), s + (p * 5), 4);
+	p = -1;
 	b = 0;
-	pow = 0;
-	p = 0;
-	while (p < 21)
+	while (++p < 16)
 	{
-		if ((s[p] != '\n') && (++pow) && (s[p] != '.'))
-			b |= 1 << pow;
-		p++;
+		b |= (buf[p] == '#') ? (1 << p) : 0;
+		ft_putnbr(b);
+		ft_putchar(' ');
 	}
-	b = b >> 1;
+	ft_putchar('\n');
 	while ((b & (unsigned short)15) == 0)
 		b >>= 4;
 	while ((b & (unsigned short)4369) == 0)
