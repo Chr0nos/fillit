@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   superdisplayator.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/31 12:26:51 by qloubier          #+#    #+#             */
+/*   Updated: 2015/12/31 12:28:04 by snicolet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 static void		display_line(t_fillit *f, size_t p)
@@ -12,7 +24,7 @@ static void		display_line(t_fillit *f, size_t p)
 	ft_memset(buffer + f->grid_size, (int)'\0', 21 - f->grid_size);
 	//ft_putnbr((int)(f->grid_size));
 	//ft_putchar('\n');
-	while(e < f->elements_count)
+	while (e < f->elements_count)
 	{
 		x = f->elems[e].pos >> 8;
 		//ft_putnbr((int)x);

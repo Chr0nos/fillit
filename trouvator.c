@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 12:15:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:27:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 		return (0);
 	if (n + 1 == x->elements_count)
 		return (1);
-	if(trouvator_engine(x, n + (unsigned int)(ret++)))
+	if (trouvator_engine(x, n + (unsigned int)(ret++)))
 		return (1);
 	ft_putendl("failed to place element");
 	//removator(x, n);

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 10:47:37 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:26:44 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int						insert_bin(t_fillit *f, t_element *elem, unsigned int n)
 	p = 0;
 	while (p + elem->height <= f->grid_size)
 	{
-		//f->bgrid[p] |= ((unsigned short)65535) >> f->grid_size;
 		x = canfit(f, p, n);
 		f->bgrid[p] &= ((unsigned short)65535) << (16 - f->grid_size);
 		if (x > -1)

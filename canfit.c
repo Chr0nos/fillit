@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 15:20:59 by qloubier         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:23:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, size_t x)
 	ft_putchar('\n');
 	if(((bloc->height + p) <= f->grid_size) &&
 		((bloc->width + x) <= f->grid_size) &&
-		!((((mask << 4) & 61440) >> x) & f->bgrid[p + 1]) && 
+		!((((mask << 4) & 61440) >> x) & f->bgrid[p + 1]) &&
 		!((((mask << 8) & 61440) >> x) & f->bgrid[p + 2]) &&
 		!((((mask << 12) & 61440) >> x) & f->bgrid[p + 3]))
 		return (1);
@@ -81,8 +81,8 @@ int			canfit(t_fillit *f, size_t p, unsigned int n)
 		ft_putstr(" seams good\n");
 		if (canfit_bloc(f, p, f->elems + n, (size_t)x))
 			return (x);
-		if((unsigned int)(++x) >= f->grid_size)
-			break;
+		if ((unsigned int)(++x) >= f->grid_size)
+			return (-1);
 	}
 	return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 20:35:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:28:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static unsigned short	revbits(unsigned short b)
 	return (x);
 }
 
-static void	prepair_elem(char *s, t_element *elem, char letter)
+static void				prepair_elem(char *s, t_element *elem, char letter)
 {
 	elem->display = binarizator_of_doom(s);
 	elem->bin = elem->display;
@@ -43,7 +43,7 @@ static void	prepair_elem(char *s, t_element *elem, char letter)
 	elem->placed = 0;
 }
 
-static void	prepair_map(t_fillit *f)
+static void				prepair_map(t_fillit *f)
 {
 	unsigned char	p;
 
@@ -52,7 +52,7 @@ static void	prepair_map(t_fillit *f)
 		f->map[p] = ((p > f->elements_count) ? -1 : (char)p);
 }
 
-t_fillit	*preparator(t_list *lst)
+t_fillit				*preparator(t_list *lst)
 {
 	t_fillit	*x;
 	size_t		p;
