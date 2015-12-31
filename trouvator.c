@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 10:58:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:09:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static void				swap_map(t_fillit *f, unsigned int n1, unsigned int n2)
 {
-	f->map[n1] = f->map[n1] + f->map[n2];
 	f->map[n2] = f->map[n1];
+	f->map[n1] = f->map[n1] + f->map[n2];
 	f->map[n1] = f->map[n1] - f->map[n2];
 }
 
