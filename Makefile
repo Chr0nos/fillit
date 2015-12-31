@@ -39,9 +39,9 @@ fclean: clean
 	rm -f $(NAME)
 re: fclean libftre all
 libft:
-	make -C $(LIBFT)
+	make -C $(LIBFT) BTREE= GNL=
 libftre:
-	make -C $(LIBFT) re
+	make -C $(LIBFT) BTREE= GNL= re
 norminette:
 	make -C $(LIBFT) norminette
 	norminette *.[ch]
