@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 11:41:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:33:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	display_bits(unsigned short nb)
 	buffer[32] = '\0';
 	while (p--)
 	{
-		buffer[(p * 2) + 1] = ((nb >> (15 - p) & (tetrobloc)1) ? '1' : '0');
+		buffer[(p * 2) + 1] = ((nb >> (15 - p) & (t_tetrobloc)1) ? '1' : '0');
 		buffer[(p * 2)] = ' ';
 	}
 	ft_putstr(buffer);
@@ -54,15 +54,17 @@ static void	display_bits(unsigned short nb)
 static void	display_tetrominos(t_fillit *x)
 {
 	unsigned int	p;
+	t_element		*elem;
 
 	p = 0;
 	while (p < x->elements_count)
 	{
-		ft_putnbr((int)x->elems[p].bin);
+		elem = &x->elems[(unsigned int)x->map[p]];
+		ft_putnbr((int)elem->bin);
 		ft_putchar('\n');
-		display_bits(x->elems[p].bin);
+		display_bits(elem->bin);
 		ft_putchar('\n');
-		display_tetro_of_the_infinite_agony(&x->elems[p]);
+		display_tetro_of_the_infinite_agony(elem);
 		ft_putchar('\n');
 		p++;
 	}
