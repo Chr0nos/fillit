@@ -6,12 +6,19 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 10:47:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 10:58:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
+
+static void				swap_map(t_fillit *f, unsigned int n1, unsigned int n2)
+{
+	f->map[n1] = f->map[n1] + f->map[n2];
+	f->map[n2] = f->map[n1];
+	f->map[n1] = f->map[n1] - f->map[n2];
+}
 
 static int				trouvator_engine(t_fillit *x, unsigned int n)
 {
@@ -38,6 +45,7 @@ int						trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
+	swap_map(fillit, 0, 1);	//pensser a virer cette ligne <<
 	while ((trouvator_engine(fillit, 0) == 0) && (fillit->grid_size < 16))
 	{
 		fillit->grid_size += 1;
