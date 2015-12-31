@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 12:09:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:15:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int						trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
-	swap_map(fillit, 0, 1);	//pensser a virer cette ligne <<
+	swap_map(fillit, 0, 3);	//pensser a virer cette ligne <<
 	while ((trouvator_engine(fillit, 0) == 0) && (fillit->grid_size < 16))
 	{
 		fillit->grid_size += 1;

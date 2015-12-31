@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 14:11:45 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/30 20:25:53 by snicolet         ###   ########.fr       */
+/*   Updated: 2015/12/31 12:17:55 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ int					removator(t_fillit *f, unsigned int n)
 	unsigned char			p;
 	unsigned char			x;
 
-	b = f->elems[n].bin;
+	b = f->elems[(unsigned int)f->map[n]].bin;
 	ft_putstr("Removing ... ");
-	ft_putchar(f->elems[n].letter);
+	ft_putchar(f->elems[(unsigned int)f->map[n]].letter);
 	ft_putchar('\n');
-	p = (unsigned char)(f->elems[n].pos >> 8);
+	p = (unsigned char)(f->elems[(unsigned int)f->map[n]].pos >> 8);
 	ft_putnbr((int)p);
 	ft_putstr(" line\n");
-	x = (unsigned char)(f->elems[n].pos & 255);
+	x = (unsigned char)(f->elems[(unsigned int)f->map[n]].pos & 255);
 	ft_putnbr((int)x);
 	ft_putstr(" colone\n");
 	f->bgrid[p] ^= (b & 61440) >> x;
 	f->bgrid[p + 1] ^= ((b << 4) & 61440) >> x;
 	f->bgrid[p + 2] ^= ((b << 8) & 61440) >> x;
 	f->bgrid[p + 3] ^= ((b << 12) & 61440) >> x;
-	f->elems[n].placed = 0;
+	f->elems[(unsigned int)f->map[n]].placed = 0;
 	return (0);
 }
