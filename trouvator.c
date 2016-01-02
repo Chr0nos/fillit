@@ -15,15 +15,18 @@
 
 static void				swap_map(t_fillit *f, unsigned int n1, unsigned int n2)
 {
-	f->map[n2] = f->map[n1];
-	f->map[n1] = f->map[n1] + f->map[n2];
-	f->map[n1] = f->map[n1] - f->map[n2];
+	char	tmp;
+
+	tmp = f->map[n1];
+	f->map[n1] = f->map[n2];
+	f->map[n2] = tmp;
 }
 
 static int				trouvator_engine(t_fillit *x, unsigned int n)
 {
 	int		ret;
 
+	ft_printf("trouvator: insert id %d at %d\n", (int)x->map[n], (int)n);
 	ret = insert_bin(x, &x->elems[(unsigned int)x->map[n]]);
 	if (ret == 0)
 		return (0);
