@@ -6,4 +6,4 @@ Passage en binaire                      |         |          | x
 Resolution du prob                      |         |    x     |
 Optimisation                            |         |    x     |
 Fix detection ligne vide                |         |          | x
-Fix de la detection des debut de pieces |    x    |          |
+Fix de la detection des debut de pieces |         |          | x
