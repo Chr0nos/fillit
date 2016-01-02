@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 10:47:42 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/02 22:28:40 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@
 
 typedef struct		s_element
 {
-	char		letter;
+	char			letter;
 	unsigned char	height;
 	unsigned char	width;
-	char		placed;
+	char			placed;
 	unsigned short	pos;
 	unsigned short	bin;
 	unsigned short	display;
-}			t_element;
+}					t_element;
 
 typedef struct		s_fillit
 {
 	unsigned short	bgrid[GRID_EDGE];
 	unsigned int	elements_count;
 	unsigned int	grid_size;
-	t_element	*elems;
-	char		map[26];
-	char		padding[6];
-}			t_fillit;
+	t_element		*elems;
+	char			map[26];
+	char			padding[6];
+}					t_fillit;
 
 # include "fillit_map.h"
 
