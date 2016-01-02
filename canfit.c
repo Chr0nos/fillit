@@ -62,13 +62,10 @@ static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc, size_t x)
  * ** return: 1 if the tetro can fit line "p", in other case 0
  * */
 
-int			canfit(t_fillit *f, size_t p, unsigned int n)
+int			canfit(t_fillit *f, size_t p, t_element *elem)
 {
 	int		x;
-	t_element	*elem;
 
-	//elem = &f->elems[(unsigned int)f->map[n]];
-	elem = &f->elems[n];
 	ft_putchar(elem->letter);
 	ft_putchar('\n');
 	ft_putnbr((int)p);

@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-int						insert_bin(t_fillit *f, t_element *elem, unsigned int n)
+int						insert_bin(t_fillit *f, t_element *elem)
 {
 	const unsigned short	bo = elem->bin;
 	size_t					p;
@@ -21,7 +21,7 @@ int						insert_bin(t_fillit *f, t_element *elem, unsigned int n)
 	p = 0;
 	while (p + elem->height <= f->grid_size)
 	{
-		x = canfit(f, p, n);
+		x = canfit(f, p, elem);
 		f->bgrid[p] &= ((unsigned short)65535) << (16 - f->grid_size);
 		if (x > -1)
 		{

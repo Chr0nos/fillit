@@ -24,7 +24,7 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 {
 	int		ret;
 
-	ret = insert_bin(x, &x->elems[(unsigned int)x->map[n]], n);
+	ret = insert_bin(x, &x->elems[(unsigned int)x->map[n]]);
 	if (ret == 0)
 		return (0);
 	if (n + 1 == x->elements_count)
@@ -45,6 +45,7 @@ int						trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
+	(void)swap_map;
 	swap_map(fillit, 0, 3);	//pensser a virer cette ligne <<
 	while ((trouvator_engine(fillit, 0) == 0) && (fillit->grid_size < 16))
 	{
