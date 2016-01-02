@@ -59,7 +59,7 @@ static void	display_tetrominos(t_fillit *x)
 	p = 0;
 	while (p < x->elements_count)
 	{
-		elem = &x->elems[(unsigned int)x->map[p]];
+		elem = &x->elems[p];
 		ft_putnbr((int)elem->bin);
 		ft_putchar('\n');
 		display_bits(elem->bin);
