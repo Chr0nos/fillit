@@ -65,22 +65,25 @@ static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc, size_t x)
 int			canfit(t_fillit *f, size_t p, unsigned int n)
 {
 	int		x;
+	t_element	*elem;
 
-	ft_putchar(f->elems[n].letter);
+	//elem = &f->elems[(unsigned int)f->map[n]];
+	elem = &f->elems[n];
+	ft_putchar(elem->letter);
 	ft_putchar('\n');
 	ft_putnbr((int)p);
 	ft_putstr(" H\n");
 	ft_putnbr((int)(f->bgrid[p]));
 	ft_putstr(" B\n");
-	ft_putnbr((int)(f->elems[n].bin));
+	ft_putnbr((int)(elem->bin));
 	ft_putstr(" PB\n");
 	//ft_putbits(&(f->elems[n].bin), sizeof(unsigned short));
 	x = 0;
-	while ((x = canfit_horizontal(f, p, f->elems + n, (size_t)x)) != -1)
+	while ((x = canfit_horizontal(f, p, elem, (size_t)x)) != -1)
 	{
 		ft_putnbr(x);
 		ft_putstr(" seams good\n");
-		if (canfit_bloc(f, p, f->elems + n, (size_t)x))
+		if (canfit_bloc(f, p, elem, (size_t)x))
 			return (x);
 		if ((unsigned int)(++x) >= f->grid_size)
 			return (-1);
