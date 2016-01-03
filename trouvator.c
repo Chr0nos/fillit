@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/02 22:53:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 00:03:58 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,16 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 	ft_printf("trouvator: insert id %d at %d\n", (int)x->map[n], (int)n);
 	ret = insert_bin(x, &x->elems[(unsigned int)x->map[n]]);
 	if (ret == 0)
+	{
+		if (x->grid_size < 16)
+		{
+			grid_reset(x);
+			x->grid_size += 1;
+			ft_printf("setting grid size to %d\n", x->grid_size);
+			return (trouvator_engine(x, 0));
+		}
 		return (0);
+	}
 	if (n + 1 == x->elements_count)
 		return ((int)x->grid_size);
 	return (trouvator_engine(x, n + 1));
@@ -44,12 +53,7 @@ int						trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
-	while ((trouvator_engine(fillit, 0) == 0) && (fillit->grid_size < 16))
-	{
-		fillit->grid_size += 1;
-		grid_reset(fillit);
-		ft_printf("setting grid size to %d\n", fillit->grid_size);
-	}
+	trouvator_engine(fillit, 0);
 	displayator(fillit);
 	free(fillit->elems);
 	free(fillit);
