@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 12:42:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 16:05:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,6 @@ static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, size_t x)
 	unsigned short	mask;
 
 	mask = bloc->bin;
-
-	ft_putnbr((int)(bloc->height + p));
-	ft_putchar('-');
-	ft_putnbr((int)(bloc->width + x));
-	ft_putchar('-');
-	ft_putnbr((int)(f->grid_size));
-	ft_putchar(' ');
-	ft_putnbr((int)((((mask << 4) & 61440) >> x) & f->bgrid[p + 1]));
-	ft_putchar(' ');
-	ft_putnbr((int)((((mask << 8) & 61440) >> x) & f->bgrid[p + 2]));
-	ft_putchar(' ');
-	ft_putnbr((int)((((mask << 12) & 61440) >> x) & f->bgrid[p + 3]));
-	ft_putchar('\n');
 	if (((bloc->height + p) <= f->grid_size) &&
 		((bloc->width + x) <= f->grid_size) &&
 		!(((mask & 61440) >> x) & f->bgrid[p]) &&
@@ -66,14 +53,6 @@ int			canfit(t_fillit *f, size_t p, t_element *elem)
 {
 	int		x;
 
-	ft_putchar(elem->letter);
-	ft_putchar('\n');
-	ft_putnbr((int)p);
-	ft_putstr(" H\n");
-	ft_putnbr((int)(f->bgrid[p]));
-	ft_putstr(" B\n");
-	ft_putnbr((int)(elem->bin));
-	ft_putstr(" PB\n");
 	//ft_putbits(&(f->elems[n].bin), sizeof(unsigned short));
 	x = 0;
 	while ((x = canfit_horizontal(f, p, elem, (size_t)x)) != -1)
