@@ -41,7 +41,10 @@ static int				trouvator_engine(t_fillit *x, unsigned int n)
 		return (0);
 	}
 	if (n + 1 == x->elements_count)
+	{
+		//todo: copier la solution actuelle puis swapper les elements dans map
 		return ((int)x->grid_size);
+	}
 	return (trouvator_engine(x, n + 1));
 }
 
