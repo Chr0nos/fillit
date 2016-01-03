@@ -6,49 +6,58 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 00:03:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 15:55:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
 
-static void				swap_map(t_fillit *f, unsigned int n1, unsigned int n2)
+static void	swap_map(t_fillit *x, unsigned int p1, unsigned int p2)
 {
 	char	tmp;
 
-	tmp = f->map[n1];
-	f->map[n1] = f->map[n2];
-	f->map[n2] = tmp;
+	tmp = x->map[p1];
+	x->map[p1] = x->map[p2];
+	x->map[p2] = tmp;
 }
 
-static int				trouvator_engine(t_fillit *x, unsigned int n)
+static int	grid_extend(t_fillit *x)
+{
+	if (x->grid_size >= 16)
+		return (0);
+	grid_reset(x);
+	x->grid_size += 1;
+	ft_printf("setting grid size to %d\n", x->grid_size);
+	return (1);
+}
+
+static int	trouvator_engine(t_fillit *x, unsigned int n)
 {
 	int		ret;
 
-	(void)swap_map;
-	ft_printf("trouvator: insert id %d at %d\n", (int)x->map[n], (int)n);
 	ret = insert_bin(x, &x->elems[(unsigned int)x->map[n]]);
+	//echec de l insertion
 	if (ret == 0)
 	{
-		if (x->grid_size < 16)
+		//on reviens en arriere si c est possible (si on es pas deja au debut)
+		if ((int)n - 1 >= 0)
 		{
-			grid_reset(x);
-			x->grid_size += 1;
-			ft_printf("setting grid size to %d\n", x->grid_size);
-			return (trouvator_engine(x, 0));
+			removator(x, &x->elems[n - 1]);
+			swap_map(x, n, n - 1);
+			return (trouvator_engine(x, n - 1));
 		}
+		//sinon on agrandis la taille de la grille et on reprends du debut
+		else if (grid_extend(x))
+			return (trouvator_engine(x, 0));
 		return (0);
 	}
 	if (n + 1 == x->elements_count)
-	{
-		//todo: copier la solution actuelle puis swapper les elements dans map
 		return ((int)x->grid_size);
-	}
 	return (trouvator_engine(x, n + 1));
 }
 
-int						trouvator(t_list *lst)
+int			trouvator(t_list *lst)
 {
 	t_fillit	*fillit;
 
