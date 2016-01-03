@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/11 12:12:09 by snicolet          #+#    #+#              #
-#*   Updated: 2015/12/29 21:57:53 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/03 11:46:36 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ OBJ=main.o \
 	removator.o \
 	insert.o \
 	tetro_checks.o \
-	canfit.o
+	canfit.o \
+	duplicator.o
 
 all: libft $(NAME)
 $(NAME): $(OBJ)

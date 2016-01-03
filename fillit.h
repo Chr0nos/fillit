@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/02 22:28:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/03 11:46:25 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct		s_fillit
 int					main(int ac, char **av);
 int					read_file(const char *file, t_list **lst);
 t_fillit			*preparator(t_list *lst);
+t_fillit			*duplicator(t_fillit *f);
 int					trouvator(t_list *lst);
 void				grid_reset(t_fillit *x);
 void				displayator(t_fillit *x);
