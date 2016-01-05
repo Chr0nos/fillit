@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME=fillit
-GCC=clang -Wall -Werror -Wextra -Weverything -fsanitize=address
+GCC=clang -Wall -Werror -Wextra -Weverything
 LIBFT=../libft/
 OBJ=main.o \
 	read_file.o \
