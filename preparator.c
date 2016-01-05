@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 15:52:07 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 13:36:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,6 @@ static void				prepair_elem(char *s, t_element *elem, char letter)
 	elem->placed = 0;
 }
 
-static void				prepair_map(t_fillit *f)
-{
-	unsigned int	p;
-
-	p = 0;
-	while (p < f->elements_count)
-	{
-		f->map[p] = (char)p;
-		p++;
-	}
-	while (p < 26)
-		f->map[p++] = -1;
-}
-
 t_fillit				*preparator(t_list *lst)
 {
 	t_fillit	*x;
@@ -71,7 +57,7 @@ t_fillit				*preparator(t_list *lst)
 		free(x);
 		return (NULL);
 	}
-	prepair_map(x);
+	x->offset = 0;
 	x->grid_size = (unsigned int)ft_sqrtup((int)x->elements_count * 4);
 	while (lst)
 	{

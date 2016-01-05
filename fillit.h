@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 15:51:40 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 13:35:20 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct			s_fillit
 	unsigned int		elements_count;
 	unsigned int		grid_size;
 	t_element			*elems;
-	char				map[26];
-	char				padding[6];
+	unsigned char		offset;
+	char				padding[7];
 }						t_fillit;
 
 int						main(int ac, char **av);
