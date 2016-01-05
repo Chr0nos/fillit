@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 13:38:41 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 14:51:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ static int	trouvator_engine(t_fillit x, unsigned int n)
 	{
 		if ((!x.elems[x.offset].placed) &&
 			(insert_bin(&x, &x.elems[x.offset]) != 0))
-				return (trouvator_engine(x, n + 1));
+		{
+			if (trouvator_engine(x, n + 1))
+				return (1);
+		}
 		x.offset++;
 	}
 	return (0);
@@ -51,7 +54,6 @@ int			trouvator(t_list *lst)
 		return (-1);
 	while ((trouvator_engine(*fillit, 0) == 0) && (grid_extend(fillit)))
 		(void)fillit;
-	free(fillit->elems);
 	free(fillit);
 	return (0);
 }

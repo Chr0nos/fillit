@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 13:36:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 14:48:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,7 @@ t_fillit				*preparator(t_list *lst)
 	if (!(x = (t_fillit*)malloc(sizeof(t_fillit))))
 		return (NULL);
 	x->elements_count = (unsigned int)ft_lstsize(lst);
-	x->elems = (t_element*)malloc(sizeof(t_element) * x->elements_count);
-	if ((!(p = 0)) && (!x->elems))
-	{
-		free(x);
-		return (NULL);
-	}
+	p = 0;
 	x->offset = 0;
 	x->grid_size = (unsigned int)ft_sqrtup((int)x->elements_count * 4);
 	while (lst)

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME=fillit
-GCC=clang -Wall -Werror -Wextra -Weverything
+GCC=clang -Wall -Werror -Wextra -Weverything -fsanitize=address
 LIBFT=../libft/
 OBJ=main.o \
 	read_file.o \
@@ -26,7 +26,6 @@ OBJ=main.o \
 	insert.o \
 	tetro_checks.o \
 	canfit.o \
-	duplicator.o
 
 all: libft $(NAME)
 $(NAME): $(OBJ)
