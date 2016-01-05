@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/03 16:05:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 14:58:05 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,13 @@ static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc, size_t x)
 	return ((int)x);
 }
 
-/*
- * ** f = fillit structure
- * ** p = current line
- * ** b = binarized tetromino
- * ** tab = binaries masks table
- * ** return: 1 if the tetro can fit line "p", in other case 0
- * */
-
 int			canfit(t_fillit *f, size_t p, t_element *elem)
 {
 	int		x;
 
-	//ft_putbits(&(f->elems[n].bin), sizeof(unsigned short));
 	x = 0;
 	while ((x = canfit_horizontal(f, p, elem, (size_t)x)) != -1)
 	{
-		ft_putnbr(x);
-		ft_putstr(" seams good\n");
 		if (canfit_bloc(f, p, elem, (size_t)x))
 			return (x);
 		if ((unsigned int)(++x) >= f->grid_size)

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 12:26:44 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 14:56:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int						insert_bin(t_fillit *f, t_element *elem)
 		f->bgrid[p] &= ((unsigned short)65535) << (16 - f->grid_size);
 		if (x > -1)
 		{
-			ft_putstr("placed at ");
-			ft_putnbr(x);
-			ft_putchar('\n');
 			elem->pos = (unsigned short)((unsigned short)(p) << 8);
 			elem->pos |= (unsigned short)x;
 			f->bgrid[p] |= (bo & 61440) >> x;
