@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 19:07:23 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 22:30:31 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ static int	trouvator_engine(t_fillit f, unsigned int n)
 			while (x < (int)f.grid_size)
 			{
 				if ((!f.elems[piece].placed) &&
-						(insert_bin(&f, x++, y, &f.elems[piece]) != 0))
+						(insert_bin(&f, x, y, &f.elems[piece]) != 0))
 				{
 					if (trouvator_engine(f, n + 1))
 						return (1);
 					removator(&f, &f.elems[piece]);
 				}
+				x++;
 			}
 			y++;
 		}
