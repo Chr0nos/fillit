@@ -6,18 +6,28 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 14:55:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:08:24 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdlib.h>
 
+static void	reset_placed(t_fillit *x)
+{
+	unsigned int	p;
+
+	p = x->elements_count;
+	while (p--)
+		x->elems[p].placed = 0;
+}
+
 static int	grid_extend(t_fillit *x)
 {
 	if (x->grid_size >= 16)
 		return (0);
 	grid_reset(x);
+	reset_placed(x);
 	x->grid_size += 1;
 	ft_printf("setting grid size to %d\n", x->grid_size);
 	return (1);

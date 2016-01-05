@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 14:56:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:15:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int						insert_bin(t_fillit *f, t_element *elem)
 			f->bgrid[p + 1] |= ((bo << 4) & 61440) >> x;
 			f->bgrid[p + 2] |= ((bo << 8) & 61440) >> x;
 			f->bgrid[p + 3] |= ((bo << 12) & 61440) >> x;
+			elem->placed = 1;
 			return (1);
 		}
 		p++;
