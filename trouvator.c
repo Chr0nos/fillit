@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 13:32:11 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 13:38:41 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ int			trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
-	while (trouvator_engine(*fillit, 0) == 0)
-	{
-		if (!grid_extend(fillit))
-			break ;
-	}
+	while ((trouvator_engine(*fillit, 0) == 0) && (grid_extend(fillit)))
+		(void)fillit;
 	free(fillit->elems);
 	free(fillit);
 	return (0);
