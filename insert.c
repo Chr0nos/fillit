@@ -6,22 +6,21 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 15:15:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 18:43:35 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int						insert_bin(t_fillit *f, t_element *elem)
+int						insert_bin(t_fillit *f, int x, int y, t_element *elem)
 {
 	const unsigned short	bo = elem->bin;
-	size_t					p;
-	int						x;
+	int						p;
 
-	p = 0;
-	while (p + elem->height <= f->grid_size)
+	p = y;
+	while ((size_t)p + elem->height <= f->grid_size)
 	{
-		x = canfit(f, p, elem);
+		x = canfit(f, x, p, elem);
 		f->bgrid[p] &= ((unsigned short)65535) << (16 - f->grid_size);
 		if (x > -1)
 		{

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 15:30:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 19:07:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,36 @@ static int	grid_extend(t_fillit *x)
 	return (1);
 }
 
-static int	trouvator_engine(t_fillit x, unsigned int n)
+static int	trouvator_engine(t_fillit f, unsigned int n)
 {
-	if (n == x.elements_count)
+	int				x;
+	int				y;
+	unsigned int	piece;
+
+	if (n == f.elements_count)
 	{
-		displayator(&x);
-		return ((int)x.grid_size);
+		displayator(&f);
+		return (1);
 	}
-	x.offset = 0;
-	while (x.offset < x.elements_count)
+	piece = 0;
+	while (piece < f.elements_count)
 	{
-		if ((!x.elems[x.offset].placed) &&
-			(insert_bin(&x, &x.elems[x.offset]) != 0))
+		y = 0;
+		while ((y < (int)f.grid_size) && (!(x = 0)))
 		{
-			if (trouvator_engine(x, n + 1))
-				return (1);
-			removator(&x, &x.elems[x.offset]);
+			while (x < (int)f.grid_size)
+			{
+				if ((!f.elems[piece].placed) &&
+						(insert_bin(&f, x++, y, &f.elems[piece]) != 0))
+				{
+					if (trouvator_engine(f, n + 1))
+						return (1);
+					removator(&f, &f.elems[piece]);
+				}
+			}
+			y++;
 		}
-		x.offset++;
+		piece++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 14:41:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 18:45:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ unsigned short			binarizator_of_doom(char *s);
 int						removator(t_fillit *x, t_element *elem);
 unsigned char			tetro_width(unsigned short b);
 unsigned char			tetro_height(unsigned short b);
-int						insert_bin(t_fillit *f, t_element *elem);
+int						insert_bin(t_fillit *f, int x, int y, t_element *elem);
 int						check_line(char *buffer, int len);
-int						canfit(t_fillit *f, size_t p, t_element *elem);
+int						canfit(t_fillit *f, int x, int y, t_element *elem);
 void					super_display_of_doom(t_fillit *f);
 
 #endif
