@@ -6,11 +6,12 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2015/12/31 12:33:58 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:23:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "libft.h"
 
 static void	display_tetro_of_the_infinite_agony(t_element *t)
 {
@@ -27,7 +28,7 @@ static void	display_tetro_of_the_infinite_agony(t_element *t)
 	{
 		if (p % 5 == 0)
 			buffer[p++] = '\n';
-		if (nb >> bit++ & (unsigned short)1)
+		if ((nb >> bit++) & (unsigned short)1)
 			buffer[p++] = (char)t->letter;
 		else
 			buffer[p++] = '.';

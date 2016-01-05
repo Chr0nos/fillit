@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 15:08:24 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:30:17 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int	trouvator_engine(t_fillit x, unsigned int n)
 		{
 			if (trouvator_engine(x, n + 1))
 				return (1);
+			removator(&x, &x.elems[x.offset]);
 		}
 		x.offset++;
 	}

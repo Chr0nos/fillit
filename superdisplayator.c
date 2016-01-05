@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 12:26:51 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/31 12:28:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:22:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,13 @@ static void		display_line(t_fillit *f, size_t p)
 	e = 0;
 	ft_memset(buffer, (int)'.', 21);
 	ft_memset(buffer + f->grid_size, (int)'\0', 21 - f->grid_size);
-	//ft_putnbr((int)(f->grid_size));
-	//ft_putchar('\n');
 	while (e < f->elements_count)
 	{
 		x = f->elems[e].pos >> 8;
-		//ft_putnbr((int)x);
-		//ft_putchar('\n');
 		if (x <= p && (x + 4) > p)
 		{
 			b = (f->elems[e].bin << (p - x) * 4) & 61440;
 			x = (unsigned char)(f->elems[e].pos & 255);
-			//ft_putnbr((int)x);
-			//ft_putchar('\n');
 			buffer[x] = (b & 32768) ? f->elems[e].letter : buffer[x];
 			buffer[x + 1] = (b & 16384) ? f->elems[e].letter : buffer[x + 1];
 			buffer[x + 2] = (b & 8192) ? f->elems[e].letter : buffer[x + 2];
@@ -57,7 +51,7 @@ void			super_display_of_doom(t_fillit *f)
 	{
 		ft_putnbr((int)p);
 		ft_putchar(' ');
-		display_line (f, p);
+		display_line(f, p);
 		ft_putchar('\n');
 		++p;
 	}
