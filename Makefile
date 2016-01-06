@@ -6,7 +6,7 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/11 12:12:09 by snicolet          #+#    #+#              #
-#*   Updated: 2016/01/03 11:46:36 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/06 23:03:57 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,7 @@ OBJ=main.o \
 	binarizator_of_doom.o \
 	removator.o \
 	insert.o \
-	tetro_checks.o \
-	canfit.o \
+	tetro_checks.o
 
 all: libft $(NAME)
 $(NAME): $(OBJ)

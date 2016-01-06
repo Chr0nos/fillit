@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 20:25:14 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 23:02:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ typedef struct			s_fillit
 	unsigned int		grid_size;
 	t_element			elems[26];
 }						t_fillit;
-
-typedef struct			s_point
-{
-	int					x;
-	int					y;
-}						t_point;
 
 int						main(int ac, char **av);
 int						read_file(const char *file, t_list **lst);
