@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 12:47:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:46:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,36 @@ static int	grid_extend(t_fillit *x)
 	ft_printf("setting grid size to %d\n", x->grid_size);
 	return (1);
 }
-
-static int	trouvator_brutforce(t_fillit *x)
+//*
+static int	trouvator_brutforce(t_fillit *x, char *idxs, unsigned char c)
 {
-	size_t	i;
-	int		n;
+	unsigned char	i;
+	int				n;
 
 	i = 0;
-	n = 1;
+	n = 2;
 	while(i < x->elements_count)
 	{
-		++i;
-		if (x->elems[i - 1].placed)
-			continue ;
-		n = -1;
-		if (insert_bin(x, &(x->elems[i - 1])))
-			n = trouvator_brutforce(x);
-		if (n == 0)
+		n = 0;
+		if (idxs[i] != -1)
+		{
+			idxs[i] = c;
+			if (c + 1 == x->elements_count)
+			n = trouvator_brutforce(x, idxs, c + 1);
+			if (n == 1)
+				return (1);
 			removator(x, &(x->elems[i - 1]));
-		else if (n == 1)
-			return (1);
-		else
-			return (0);
+			idxs[i] = -1
+			if (n < 0)
+				return (n + 1);
+		}
+		++i;
 	}
-	/*ft_putnbr((int)i);
-	ft_putchar('\n');*/
+	//ft_putnbr((int)i);
+	//ft_putchar('\n');
 	return (n);
 }
-
+//*/
 static int	trouvator_engine(t_fillit x, unsigned int n)
 {
 	n = (unsigned int)trouvator_brutforce(&x);
@@ -69,7 +71,8 @@ static int	trouvator_engine(t_fillit x, unsigned int n)
 		displayator(&x);
 		return ((int)x.grid_size);
 	}
-	/*x.offset = 0;
+	/*
+	x.offset = 0;
 	while (x.offset < x.elements_count)
 	{
 		if ((!x.elems[x.offset].placed) &&
@@ -80,7 +83,7 @@ static int	trouvator_engine(t_fillit x, unsigned int n)
 			removator(&x, &x.elems[x.offset]);
 		}
 		x.offset++;
-	}*/
+	}//*/
 	return (0);
 }
 

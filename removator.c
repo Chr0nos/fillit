@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 14:11:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 11:57:02 by qloubier         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:39:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int					removator(t_fillit *f, t_element *elem)
 	f->bgrid[p + 2] ^= ((b << 8) & 61440) >> x;
 	f->bgrid[p + 3] ^= ((b << 12) & 61440) >> x;
 	elem->placed = 0;
-	return (0);
+	return (1);
 }
