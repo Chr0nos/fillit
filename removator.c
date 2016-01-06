@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 14:11:45 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 16:04:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 11:57:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int					removator(t_fillit *f, t_element *elem)
 	unsigned char			p;
 	unsigned char			x;
 
+	if (!elem->placed)
+		return (0);
 	b = elem->bin;
 	p = elem->pos >> 8;
 	x = (unsigned char)(elem->pos & 255);
