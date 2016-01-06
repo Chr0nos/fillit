@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 14:05:21 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:31:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ int						insert_bin(t_fillit *f, int x, int y, t_element *elem)
 {
 	const unsigned short	bo = elem->bin;
 
-	if ((size_t)y + elem->height <= f->grid_size)
+	if (((size_t)y + elem->height <= f->grid_size) && (canfit(f, x, y, elem)))
 	{
-		x = canfit(f, x, y, elem);
 		f->bgrid[y] &= ((unsigned short)65535) << (16 - f->grid_size);
 		if (x > -1)
 		{

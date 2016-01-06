@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 14:48:17 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 19:34:59 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static unsigned short	revbits(unsigned short b)
 
 static void				prepair_elem(char *s, t_element *elem, char letter)
 {
+	int	p;
+
 	elem->display = binarizator_of_doom(s);
 	elem->bin = elem->display;
 	elem->height = tetro_height(elem->bin);
@@ -41,6 +43,9 @@ static void				prepair_elem(char *s, t_element *elem, char letter)
 	elem->pos = 0;
 	elem->bin = revbits(elem->display);
 	elem->placed = 0;
+	p = 4;
+	while (p--)
+		elem->masks[p] = (elem->bin << (4 * p)) & 61440;
 }
 
 t_fillit				*preparator(t_list *lst)
