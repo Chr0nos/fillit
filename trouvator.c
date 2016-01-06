@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 22:30:31 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 14:32:04 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,22 @@ static int	grid_extend(t_fillit *x)
 	return (1);
 }
 
-static int	trouvator_engine(t_fillit f, unsigned int n)
+static int	trouvator_o_matic(t_fillit *f, t_point *p, unsigned int piece,
+		unsigned int n)
 {
-	int				x;
-	int				y;
+	if ((!f->elems[piece].placed) &&
+			(insert_bin(f, p->x, p->y, &f->elems[piece]) != 0))
+	{
+		if (trouvator_engine(*f, n + 1))
+			return (1);
+		removator(f, &f->elems[piece]);
+	}
+	return (0);
+}
+
+int			trouvator_engine(t_fillit f, unsigned int n)
+{
+	t_point			p;
 	unsigned int	piece;
 
 	if (n == f.elements_count)
@@ -47,21 +59,16 @@ static int	trouvator_engine(t_fillit f, unsigned int n)
 	piece = 0;
 	while (piece < f.elements_count)
 	{
-		y = 0;
-		while ((y < (int)f.grid_size) && (!(x = 0)))
+		p.y = 0;
+		while ((p.y < (int)f.grid_size) && (!(p.x = 0)))
 		{
-			while (x < (int)f.grid_size)
+			while (p.x < (int)f.grid_size)
 			{
-				if ((!f.elems[piece].placed) &&
-						(insert_bin(&f, x, y, &f.elems[piece]) != 0))
-				{
-					if (trouvator_engine(f, n + 1))
-						return (1);
-					removator(&f, &f.elems[piece]);
-				}
-				x++;
+				if (trouvator_o_matic(&f, &p, piece, n) == 1)
+					return (1);
+				p.x++;
 			}
-			y++;
+			p.y++;
 		}
 		piece++;
 	}
