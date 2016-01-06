@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME=fillit
-GCC=clang -Wall -Werror -Wextra -Weverything
+FLAGS=
+GCC=clang -Wall -Werror -Wextra -Weverything $(FLAGS)
 LIBFT=../libft/
 OBJ=main.o \
 	read_file.o \
