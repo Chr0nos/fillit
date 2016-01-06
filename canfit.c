@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 14:55:27 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 14:59:51 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 static int	canfit_bloc(t_fillit *f, int x, int y, t_element *bloc)
 {
-	unsigned short	mask;
+	const unsigned short	mask = bloc->bin;
 
-	mask = bloc->bin;
 	if ((((int)bloc->height + y) <= (int)f->grid_size) &&
 			(((int)bloc->width + x) <= (int)f->grid_size) &&
 			!(((mask & 61440) >> x) & f->bgrid[y]) &&
