@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 23:17:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 23:23:11 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,18 @@ int		insert_bin(t_fillit *f, int x, int y, t_element *elem)
 	elem->placed = 1;
 	return (1);
 }
+
+int					removator(t_fillit *f, t_element *elem)
+{
+	const unsigned short	b = elem->bin;
+	const unsigned char		p = elem->pos >> 8;
+	unsigned char			x = (unsigned char)(elem->pos & 255);
+
+	f->bgrid[p] ^= (b & 61440) >> x;
+	f->bgrid[p + 1] ^= ((b << 4) & 61440) >> x;
+	f->bgrid[p + 2] ^= ((b << 8) & 61440) >> x;
+	f->bgrid[p + 3] ^= ((b << 12) & 61440) >> x;
+	elem->placed = 0;
+	return (0);
+}
+
