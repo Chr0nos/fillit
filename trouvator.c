@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 14:32:04 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 20:25:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,43 +33,46 @@ static int	grid_extend(t_fillit *x)
 	return (1);
 }
 
-static int	trouvator_o_matic(t_fillit *f, t_point *p, unsigned int piece,
+static int	trouvator_o_matic(t_fillit *f, t_point *p, t_element *elem,
 		unsigned int n)
 {
-	if ((!f->elems[piece].placed) &&
-			(insert_bin(f, p->x, p->y, &f->elems[piece]) != 0))
+	while ((p->y < (int)f->grid_size) && (!(p->x = 0)))
 	{
-		if (trouvator_engine(*f, n + 1))
-			return (1);
-		removator(f, &f->elems[piece]);
+		while (p->x < (int)f->grid_size)
+		{
+			if ((!elem->placed) &&
+					(insert_bin(f, p->x, p->y, elem) != 0))
+			{
+				if (trouvator_engine(*f, n + 1, p->y))
+					return (1);
+				removator(f, elem);
+			}
+			p->x++;
+		}
+		p->y++;
 	}
 	return (0);
 }
 
-int			trouvator_engine(t_fillit f, unsigned int n)
+int			trouvator_engine(t_fillit f, unsigned int n, int y)
 {
 	t_point			p;
 	unsigned int	piece;
+	t_element		*elem;
 
 	if (n == f.elements_count)
 	{
 		displayator(&f);
 		return (1);
 	}
+	p.y = y;
 	piece = 0;
-	while (piece < f.elements_count)
+	while ((piece < f.elements_count) && (elem = &f.elems[piece]))
 	{
+		if (trouvator_o_matic(&f, &p, elem, n) == 1)
+			return (1);
 		p.y = 0;
-		while ((p.y < (int)f.grid_size) && (!(p.x = 0)))
-		{
-			while (p.x < (int)f.grid_size)
-			{
-				if (trouvator_o_matic(&f, &p, piece, n) == 1)
-					return (1);
-				p.x++;
-			}
-			p.y++;
-		}
+		p.x = 0;
 		piece++;
 	}
 	return (0);
@@ -83,7 +86,7 @@ int			trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
-	while ((trouvator_engine(*fillit, 0) == 0) && (grid_extend(fillit)))
+	while ((trouvator_engine(*fillit, 0, 0) == 0) && (grid_extend(fillit)))
 		(void)fillit;
 	free(fillit);
 	return (0);

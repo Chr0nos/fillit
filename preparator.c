@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 19:34:59 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 20:05:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_fillit				*preparator(t_list *lst)
 		return (NULL);
 	x->elements_count = (unsigned int)ft_lstsize(lst);
 	p = 0;
-	x->offset = 0;
 	x->grid_size = (unsigned int)ft_sqrtup((int)x->elements_count * 4);
 	while (lst)
 	{

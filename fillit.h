@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 19:34:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 20:25:14 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ typedef struct			s_fillit
 	unsigned int		elements_count;
 	unsigned int		grid_size;
 	t_element			elems[26];
-	unsigned char		offset;
-	char				padding[7];
 }						t_fillit;
 
 typedef struct			s_point
@@ -53,7 +51,7 @@ int						main(int ac, char **av);
 int						read_file(const char *file, t_list **lst);
 t_fillit				*preparator(t_list *lst);
 t_fillit				*duplicator(t_fillit *f);
-int						trouvator_engine(t_fillit f, unsigned int n);
+int						trouvator_engine(t_fillit f, unsigned int n, int y);
 int						trouvator(t_list *lst);
 void					grid_reset(t_fillit *x);
 void					displayator(t_fillit *x);
