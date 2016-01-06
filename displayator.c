@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:53:17 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 15:23:26 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 14:39:09 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	display_bits(unsigned short nb)
 	buffer[32] = '\0';
 	while (p--)
 	{
-		buffer[(p * 2) + 1] = ((nb >> (15 - p) & (t_tetrobloc)1) ? '1' : '0');
+		buffer[(p * 2) + 1] = (((nb >> (15 - p)) & (t_tetrobloc)1) ? '1' : '0');
 		buffer[(p * 2)] = ' ';
 	}
 	ft_putstr(buffer);
