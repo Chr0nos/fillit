@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 23:08:45 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 23:13:15 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int			canfit(t_fillit *f, int x, int y, t_element *bloc)
 {
 	const unsigned short	*m = bloc->masks;
 
-	if (((bloc->height + y) <= (unsigned char)f->grid_size) &&
-			((bloc->width + x) <= (unsigned char)f->grid_size) &&
+	if (((bloc->width + x) <= (unsigned char)f->grid_size) &&
 			!((m[0] >> x) & f->bgrid[y]) &&
 			!((m[1] >> x) & f->bgrid[y + 1]) &&
 			!((m[2] >> x) & f->bgrid[y + 2]) &&
