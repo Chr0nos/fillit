@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 23:16:15 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/06 23:17:26 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int			canfit(t_fillit *f, int x, int y, t_element *bloc)
 
 int		insert_bin(t_fillit *f, int x, int y, t_element *elem)
 {
-	const unsigned short	*m = elem->masks;
+	unsigned short	*m;
 
 	if (!canfit(f, x, y, elem))
 		return (0);
+	m = elem->masks;
 	elem->pos = (unsigned short)((unsigned short)(y) << 8);
 	elem->pos |= (unsigned short)x;
 	f->bgrid[y] |= m[0] >> x;
