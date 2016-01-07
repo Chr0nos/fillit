@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 00:22:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 00:24:30 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int	grid_extend(t_fillit *x)
 	return (1);
 }
 
-static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n, unsigned int piece)
+static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n,
+		unsigned int piece)
 {
 
 	int	x;
