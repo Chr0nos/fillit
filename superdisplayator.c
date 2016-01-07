@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 12:26:51 by qloubier          #+#    #+#             */
-/*   Updated: 2016/01/07 01:05:48 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 14:23:48 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		display_line(t_fillit *f, size_t p)
 	ft_putstr(buffer);
 }
 
-int			super_display_of_doom(t_fillit *f)
+int				super_display_of_doom(t_fillit *f)
 {
 	unsigned char	p;
 

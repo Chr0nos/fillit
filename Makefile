@@ -20,7 +20,6 @@ OBJ=main.o \
 	preparator.o \
 	trouvator.o \
 	grid_reset.o \
-	displayator.o \
 	superdisplayator.o\
 	binarizator_of_doom.o \
 	insert.o \

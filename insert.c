@@ -6,13 +6,13 @@
 /*   By: snicolet <marvin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/24 17:33:28 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 00:53:56 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 14:22:23 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			canfit(t_fillit *f, int x, int y, t_element *bloc)
+int		canfit(t_fillit *f, int x, int y, t_element *bloc)
 {
 	register const unsigned short	*m = bloc->masks;
 
@@ -42,11 +42,11 @@ int		insert_bin(t_fillit *f, int x, int y, t_element *elem)
 	return (1);
 }
 
-int					removator(t_fillit *f, t_element *elem)
+int		removator(t_fillit *f, t_element *elem)
 {
-	register const unsigned short	b = elem->bin;
-	register const unsigned char	p = elem->pos >> 8;
-	register unsigned char			x = (unsigned char)(elem->pos & 255);
+	const register unsigned short	b = elem->bin;
+	const register unsigned char	p = elem->pos >> 8;
+	const register unsigned char	x = (unsigned char)(elem->pos & 255);
 
 	f->bgrid[p] ^= (b & 61440) >> x;
 	f->bgrid[p + 1] ^= ((b << 4) & 61440) >> x;
@@ -55,4 +55,3 @@ int					removator(t_fillit *f, t_element *elem)
 	elem->placed = 0;
 	return (0);
 }
-
