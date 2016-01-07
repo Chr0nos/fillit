@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 00:26:36 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 00:55:10 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n,
 		unsigned int piece)
 {
 
-	int	x;
-	int	y;
+	register unsigned char	x;
+	register unsigned char	y;
 
 	y = 0;
-	while ((y + elem->height <= (int)f->grid_size) && (!(x = 0)))
+	while ((y + (unsigned char)elem->height <= f->grid_size) && (!(x = 0)))
 	{
-		while (x < (int)f->grid_size)
+		while (x < f->grid_size)
 		{
 			if (insert_bin(f, x, y, elem) != 0)
 			{

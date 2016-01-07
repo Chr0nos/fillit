@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 00:26:20 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 00:52:16 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct			s_element
 typedef struct			s_fillit
 {
 	unsigned short		bgrid[GRID_EDGE];
-	unsigned int		elements_count;
-	unsigned int		grid_size;
+	unsigned char		elements_count;
+	unsigned char		grid_size;
 	t_element			elems[26];
 }						t_fillit;
 
