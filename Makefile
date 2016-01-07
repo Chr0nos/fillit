@@ -13,7 +13,7 @@
 NAME=fillit
 FLAGS=
 CC=clang -Wall -Werror -Wextra -Weverything $(FLAGS)
-LIBFT=../libft/
+LIBFT=./libft/
 OBJ=main.o \
 	read_file.o \
 	tetro_info.o \
@@ -27,20 +27,25 @@ OBJ=main.o \
 	tetro_checks.o
 
 all: libft $(NAME)
+
 $(NAME): $(OBJ)
+	make -C $(LIBFT) BTREE= GNL=
 	$(CC) $(OBJ) -o $(NAME) -I $(LIBFT) -L $(LIBFT) -lft
+
 %.o: %.c
 	$(CC) -c -I $(LIBFT) $<
+
 clean:
 	rm -f $(OBJ)
+
 fclean: clean
 	make -C $(LIBFT) fclean
 	rm -f $(NAME)
 re: fclean libftre all
-libft:
-	make -C $(LIBFT) BTREE= GNL=
+
 libftre:
 	make -C $(LIBFT) BTREE= GNL= re
+
 norminette:
 	make -C $(LIBFT) norminette
 	norminette *.[ch]
