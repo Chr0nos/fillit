@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 14:24:43 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 14:28:37 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ int						trouvator(t_list *lst);
 void					grid_reset(t_fillit *x);
 unsigned short			binarizator_of_doom(char *s);
 int						removator(t_fillit *x, t_element *elem);
-unsigned char			tetro_width(unsigned short b);
-unsigned char			tetro_height(unsigned short b);
 int						insert_bin(t_fillit *f, int x, int y, t_element *elem);
 int						check_line(char *buffer, int len);
 int						canfit(t_fillit *f, int x, int y, t_element *bloc);

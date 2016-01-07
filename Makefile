@@ -16,7 +16,6 @@ CC=clang -Wall -Werror -Wextra -Weverything $(FLAGS)
 LIBFT=./libft/
 OBJ=main.o \
 	read_file.o \
-	tetro_info.o \
 	preparator.o \
 	trouvator.o \
 	grid_reset.o \
@@ -25,10 +24,9 @@ OBJ=main.o \
 	insert.o \
 	tetro_checks.o
 
-all: libft $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJ)
-	make -C $(LIBFT) BTREE= GNL=
+$(NAME): $(LIBFT)/libft.a $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) -I $(LIBFT) -L $(LIBFT) -lft
 
 %.o: %.c
@@ -42,6 +40,9 @@ fclean: clean
 	rm -f $(NAME)
 re: fclean libftre all
 
+$(LIBFT)/libft.a:
+	make -C $(LIBFT) BTREE= GNL=
+
 libftre:
 	make -C $(LIBFT) BTREE= GNL= re
 
@@ -49,4 +50,4 @@ norminette:
 	make -C $(LIBFT) norminette
 	norminette *.[ch]
 
-.PHONY: libft libftre clean re fclean
+.PHONY: libft libftre clean re fclean norminette

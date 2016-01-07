@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 14:26:33 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 00:53:10 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 14:29:18 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,37 @@
 #include <string.h>
 #include <stdlib.h>
 
-/*
-** revert bits order
-*/
+static unsigned char	tetro_width(unsigned short b)
+{
+	unsigned char	w;
+
+	w = 0;
+	if (b & 4369)
+		++w;
+	if (b & 8738)
+		++w;
+	if (b & 17476)
+		++w;
+	if (b & 34952)
+		++w;
+	return (w);
+}
+
+static unsigned char	tetro_height(unsigned short b)
+{
+	unsigned char	h;
+
+	h = 0;
+	if (b & 15)
+		++h;
+	if (b & 240)
+		++h;
+	if (b & 3840)
+		++h;
+	if (b & 61440)
+		++h;
+	return (h);
+}
 
 static unsigned short	revbits(unsigned short b)
 {
