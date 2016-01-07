@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 02:43:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 14:10:28 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	grid_extend(t_fillit *x)
 	grid_reset(x);
 	reset_placed(x);
 	x->grid_size += 1;
-	ft_printf("setting grid size to %d\n", x->grid_size);
 	return (1);
 }
 
