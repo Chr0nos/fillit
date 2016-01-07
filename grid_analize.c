@@ -6,13 +6,21 @@
 /*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 12:25:49 by qloubier          #+#    #+#             */
-/*   Updated: 2015/12/31 12:27:50 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 13:10:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit_map.h"
+#include "fillit.h"
 
-int		is_colliding(t_gcell *grid, t_element bloc, t_point coord)
+int		refresh_minx(t_fillit *f, unsigned char line)
 {
-	return (1);
+	unsigned char	i;
+
+	if (line >= f->grid_size)
+		return (0);
+	i = 0;
+	while ((f->bgrid[line] << (15 - i)) & 32768)
+		i++;
+	f->minx[line] = i;
+	return ((int)i);
 }

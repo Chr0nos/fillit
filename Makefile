@@ -26,6 +26,7 @@ OBJ=main.o \
 	insert.o \
 	tetro_checks.o \
 	canfit.o \
+	grid_analize.o\
 
 all: libft $(NAME)
 $(NAME): $(OBJ)

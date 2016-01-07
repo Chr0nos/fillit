@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 14:41:39 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 12:54:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define BUFF_SIZE TETRA_BASE * TETRA_HEIGH + 1
 
 typedef unsigned short	t_tetrobloc;
+typedef unsigned char	t_idx;
+
 typedef struct			s_element
 {
 	char				letter;
@@ -35,6 +37,7 @@ typedef struct			s_element
 typedef struct			s_fillit
 {
 	unsigned short		bgrid[GRID_EDGE];
+	unsigned char		minx[GRID_EDGE];
 	unsigned int		elements_count;
 	unsigned int		grid_size;
 	t_element			elems[26];
@@ -54,8 +57,9 @@ int						removator(t_fillit *x, t_element *elem);
 unsigned char			tetro_width(unsigned short b);
 unsigned char			tetro_height(unsigned short b);
 int						insert_bin(t_fillit *f, t_element *elem);
+int						refresh_minx(t_fillit *f, unsigned char line);
 int						check_line(char *buffer, int len);
-int						canfit(t_fillit *f, size_t p, t_element *elem);
+int						canfit(t_fillit *f, t_idx p, t_element *elem);
 void					super_display_of_doom(t_fillit *f);
 
 #endif

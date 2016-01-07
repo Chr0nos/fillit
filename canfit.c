@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/28 13:59:10 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/05 14:58:05 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 13:12:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	canfit_bloc(t_fillit *f, size_t p, t_element *bloc, size_t x)
 	return (0);
 }
 
-static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc, size_t x)
+static int	canfit_horizontal(t_fillit *f, t_idx p, t_element *bloc, t_idx x)
 {
 	unsigned short	mask;
 
@@ -41,14 +41,14 @@ static int	canfit_horizontal(t_fillit *f, size_t p, t_element *bloc, size_t x)
 	return ((int)x);
 }
 
-int			canfit(t_fillit *f, size_t p, t_element *elem)
+int			canfit(t_fillit *f, t_idx p, t_element *elem)
 {
 	int		x;
 
-	x = 0;
-	while ((x = canfit_horizontal(f, p, elem, (size_t)x)) != -1)
+	x = f->minx[p];
+	while ((x = canfit_horizontal(f, p, elem, (t_idx)x)) != -1)
 	{
-		if (canfit_bloc(f, p, elem, (size_t)x))
+		if (canfit_bloc(f, p, elem, (t_idx)x))
 			return (x);
 		if ((unsigned int)(++x) >= f->grid_size)
 			return (-1);
