@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 09:55:27 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 00:18:08 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 00:20:21 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int						main(int ac, char **av);
 int						read_file(const char *file, t_list **lst);
 t_fillit				*preparator(t_list *lst);
 t_fillit				*duplicator(t_fillit *f);
-int						trouvator_engine(t_fillit f, unsigned int n);
+int						trouvator_engine(t_fillit f, unsigned int n,
+		unsigned int piece);
 int						trouvator(t_list *lst);
 void					grid_reset(t_fillit *x);
 void					displayator(t_fillit *x);

@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 00:18:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 00:22:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	grid_extend(t_fillit *x)
 	return (1);
 }
 
-static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n)
+static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n, unsigned int piece)
 {
 
 	int	x;
@@ -46,7 +46,7 @@ static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n)
 		{
 			if (insert_bin(f, x, y, elem) != 0)
 			{
-				if (trouvator_engine(*f, n + 1))
+				if (trouvator_engine(*f, n + 1, piece))
 					return (1);
 				removator(f, elem);
 			}
@@ -57,9 +57,8 @@ static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n)
 	return (0);
 }
 
-int			trouvator_engine(t_fillit f, unsigned int n)
+int			trouvator_engine(t_fillit f, unsigned int n, unsigned int piece)
 {
-	unsigned int	piece;
 	t_element		*elem;
 
 	if (n == f.elements_count)
@@ -67,13 +66,9 @@ int			trouvator_engine(t_fillit f, unsigned int n)
 		super_display_of_doom(&f);
 		return (1);
 	}
-	piece = 0;
-	while ((piece < f.elements_count) && (elem = &f.elems[piece]))
-	{
-		if ((!elem->placed) && (trouvator_o_matic(&f, elem, n) == 1))
+	while ((piece < f.elements_count) && (elem = &f.elems[piece++]))
+		if ((!elem->placed) && (trouvator_o_matic(&f, elem, n, piece - 1) == 1))
 			return (1);
-		piece++;
-	}
 	return (0);
 }
 
@@ -85,7 +80,7 @@ int			trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
-	while ((trouvator_engine(*fillit, 0) == 0) && (grid_extend(fillit)))
+	while ((trouvator_engine(*fillit, 0, 0) == 0) && (grid_extend(fillit)))
 		(void)fillit;
 	free(fillit);
 	return (0);
