@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/07 00:24:30 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 00:26:36 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ int			trouvator_engine(t_fillit f, unsigned int n, unsigned int piece)
 	t_element		*elem;
 
 	if (n == f.elements_count)
-	{
-		super_display_of_doom(&f);
-		return (1);
-	}
+		return (super_display_of_doom(&f));
 	while ((piece < f.elements_count) && (elem = &f.elems[piece++]))
 		if ((!elem->placed) && (trouvator_o_matic(&f, elem, n, piece - 1) == 1))
 			return (1);

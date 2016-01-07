@@ -6,7 +6,7 @@
 /*   By: qloubier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 12:26:51 by qloubier          #+#    #+#             */
-/*   Updated: 2016/01/05 15:22:19 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 00:26:08 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		display_line(t_fillit *f, size_t p)
 	ft_putstr(buffer);
 }
 
-void			super_display_of_doom(t_fillit *f)
+int			super_display_of_doom(t_fillit *f)
 {
 	size_t			p;
 
@@ -55,4 +55,5 @@ void			super_display_of_doom(t_fillit *f)
 		ft_putchar('\n');
 		++p;
 	}
+	return (1);
 }
