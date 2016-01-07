@@ -6,7 +6,7 @@
 /*   By: snicolet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 15:03:43 by snicolet          #+#    #+#             */
-/*   Updated: 2016/01/06 23:10:09 by snicolet         ###   ########.fr       */
+/*   Updated: 2016/01/07 00:18:19 by snicolet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n)
 		{
 			if (insert_bin(f, x, y, elem) != 0)
 			{
-				if (trouvator_engine(*f, n + 1, y))
+				if (trouvator_engine(*f, n + 1))
 					return (1);
 				removator(f, elem);
 			}
@@ -57,12 +57,11 @@ static int	trouvator_o_matic(t_fillit *f, t_element *elem,	unsigned int n)
 	return (0);
 }
 
-int			trouvator_engine(t_fillit f, unsigned int n, int y)
+int			trouvator_engine(t_fillit f, unsigned int n)
 {
 	unsigned int	piece;
 	t_element		*elem;
 
-	(void)y;
 	if (n == f.elements_count)
 	{
 		super_display_of_doom(&f);
@@ -86,7 +85,7 @@ int			trouvator(t_list *lst)
 	ft_lstdel(&lst, ft_lstpulverisator);
 	if (!fillit)
 		return (-1);
-	while ((trouvator_engine(*fillit, 0, 0) == 0) && (grid_extend(fillit)))
+	while ((trouvator_engine(*fillit, 0) == 0) && (grid_extend(fillit)))
 		(void)fillit;
 	free(fillit);
 	return (0);
