@@ -6,13 +6,13 @@
 #    By: snicolet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/11 12:12:09 by snicolet          #+#    #+#              #
-#*   Updated: 2016/01/06 23:23:22 by snicolet         ###   ########.fr       *#
+#*   Updated: 2016/01/07 04:01:32 by snicolet         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME=fillit
 FLAGS=
-GCC=clang -Wall -Werror -Wextra -Weverything $(FLAGS)
+CC=clang -Wall -Werror -Wextra -Weverything $(FLAGS)
 LIBFT=../libft/
 OBJ=main.o \
 	read_file.o \
@@ -28,9 +28,9 @@ OBJ=main.o \
 
 all: libft $(NAME)
 $(NAME): $(OBJ)
-	$(GCC) $(OBJ) -o $(NAME) -I $(LIBFT) -L $(LIBFT) -lft
+	$(CC) $(OBJ) -o $(NAME) -I $(LIBFT) -L $(LIBFT) -lft
 %.o: %.c
-	$(GCC) -c -I $(LIBFT) $<
+	$(CC) -c -I $(LIBFT) $<
 clean:
 	rm -f $(OBJ)
 fclean: clean
